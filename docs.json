@@ -1,0 +1,71 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "name": "Polyform",
+  "theme": "luma",
+  "colors": {
+    "primary": "#ef7025",
+    "light": "#eec9bc",
+    "dark": "#4fa1ab"
+  },
+  "favicon": "/favicon.svg",
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg"
+  },
+  "navbar": {
+    "primary": {
+      "type": "button",
+      "label": "Get Started",
+      "href": "https://app.polyform.io/signup"
+    }
+  },
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Platform",
+        "groups": [
+          {
+            "group": "Reports",
+            "pages": []
+          },
+          {
+            "group": "Datasets",
+            "pages": []
+          },
+          {
+            "group": "Journeys",
+            "pages": []
+          },
+          {
+            "group": "Models",
+            "pages": []
+          },
+          {
+            "group": "Workflows",
+            "pages": []
+          },
+          {
+            "group": "Infrastructure",
+            "pages": [],
+            "icon": "database"
+          },
+          {
+            "group": "Tasks",
+            "pages": [],
+            "expanded": true
+          },
+          {
+            "group": "Agents",
+            "pages": []
+          }
+        ]
+      },
+      {
+        "tab": "Business"
+      }
+    ]
+  },
+  "footer": {
+    "socials": {}
+  }
+}
