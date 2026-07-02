@@ -1,7 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "name": "Polyform",
-  "theme": "luma",
+  "theme": "mint",
   "colors": {
     "primary": "#ef7025",
     "light": "#eec9bc",
@@ -9,7 +9,7 @@
   },
   "favicon": "/favicon.svg",
   "logo": {
-    "light": "/logo/light.svg",
+    "light": "/images/Screenshot2026-07-02at15.57.04.png",
     "dark": "/logo/dark.svg"
   },
   "navbar": {
@@ -89,5 +89,8 @@
   },
   "footer": {
     "socials": {}
+  },
+  "background": {
+    "decoration": "grid"
   }
 }
