@@ -25,17 +25,21 @@
         "tab": "Platform",
         "pages": [
           "how-polyform-works",
+          "company-settings",
           {
             "group": "Reports",
             "pages": [
-              "making-a-report",
-              "reports-index"
+              "reports-index",
+              "making-a-report"
             ]
           },
           {
             "group": "Datasets",
             "pages": [
-              "datasets"
+              "datasets",
+              "activity-datasets",
+              "sql-datasets",
+              "time-datasets"
             ]
           },
           {
@@ -60,11 +64,11 @@
             "group": "Infrastructure",
             "icon": "database",
             "pages": [
-              "transformations",
               "overview",
               "lineage",
               "streams",
-              "activities"
+              "activities",
+              "transformations"
             ]
           },
           {

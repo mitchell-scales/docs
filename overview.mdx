@@ -5,6 +5,10 @@ description: "System health, stale objects, and recent operational changes."
 
 The Overview page is the landing page for Infrastructure — a holistic view of the transformations and processing happening across the account. Each area it surfaces is covered in more detail on its own tab (Streams, Activities, Transformations, and so on); this page is just the health check.
 
+<Frame>
+  ![Screenshot 2026 07 02 At 14 31 17](/images/Screenshot-2026-07-02-at-14.31.17.png)
+</Frame>
+
 ## Summary Cards
 
 <Columns cols={4}>
@@ -46,7 +50,3 @@ Standard freshness thresholds used across infrastructure, streams, activities, a
 | **Green** | Freshness at or under this age is shown as healthy. |
 | **Yellow** | Freshness between green and red is shown as delayed. |
 | **Red** | Freshness at or beyond this age is shown as stale. |
-
-<Note>
-  Thresholds must be non-decreasing: green ≤ yellow ≤ red.
-</Note>
