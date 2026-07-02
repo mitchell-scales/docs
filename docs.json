@@ -23,36 +23,54 @@
     "tabs": [
       {
         "tab": "Platform",
-        "groups": [
+        "pages": [
+          "how-polyform-works",
           {
             "group": "Reports",
-            "pages": []
+            "pages": [
+              "making-a-report",
+              "reports-index"
+            ]
           },
           {
             "group": "Datasets",
-            "pages": []
+            "pages": [
+              "datasets"
+            ]
           },
           {
             "group": "Journeys",
-            "pages": []
+            "pages": [
+              "journeys"
+            ]
           },
           {
             "group": "Models",
-            "pages": []
+            "pages": [
+              "metrics"
+            ]
           },
           {
             "group": "Workflows",
-            "pages": []
+            "pages": [
+              "workflows"
+            ]
           },
           {
             "group": "Infrastructure",
-            "pages": [],
-            "icon": "database"
+            "icon": "database",
+            "pages": [
+              "transformations",
+              "overview",
+              "lineage",
+              "streams",
+              "activities"
+            ]
           },
           {
             "group": "Tasks",
-            "pages": [],
-            "expanded": true
+            "expanded": true,
+            "pages": []
           },
           {
             "group": "Agents",

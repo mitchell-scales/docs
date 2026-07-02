@@ -1,0 +1,66 @@
+---
+title: "Streams"
+description: "See ingestion health across every stream, and configure how each one processes and enriches customer data."
+---
+
+The Streams page lists every stream in the account, along with its processing volume and ingestion health. Clicking into a stream opens its detail page, where you configure how it enriches customer data and control access.
+
+## Streams List
+
+| Column | Description |
+| --- | --- |
+| **Stream** | The stream's name and identifier. |
+| **Activities** | Number of activities in the stream. |
+| **Transformations** | Number of transformations powering those activities. |
+| **Last Status** | Status of the most recent run. |
+| **Freshness** | Health status against the stream's staleness thresholds. |
+| **Row Count** | Total rows processed, and when they were last updated. |
+| **Maintainer** | Who's responsible for the stream. |
+
+### Row Actions
+
+The options menu (⋮) on each row offers:
+
+- **Edit stream** — opens the stream's detail page.
+- **Update sharing** — change who has access to the stream.
+- **Resume updates** / **Pause updates** — pauses or resumes scheduled transformations for the stream.
+
+---
+
+## Stream Detail
+
+### Stream Settings
+
+Set the stream's **Display name** and **Customer identifier name** — whether that's an email, a user ID, or something else.
+
+### Customer Profile
+
+Attach a customer enrichment source to add attributes to the stream. From here you can also add or hide attributes for **Customer Journey Searchable Columns**.
+
+<Note>
+  Only string columns can be searched in customer journey.
+</Note>
+
+<Tip>
+  Slowly changing customer dimensions — multiple customer dimensions with as-of joins on a warehouse timestamp column — are coming next.
+</Tip>
+
+### Staleness Thresholds
+
+By default, a stream inherits the company's freshness thresholds. You can override these per stream if it needs its own green, yellow, and red thresholds.
+
+### Runtime
+
+Pause a stream's updates if something has gone wrong with the data — this halts scheduled transformations until you resume them.
+
+### Impact
+
+Shows the stream's **Total Activity Rows**, **Activities**, and **Transformations** counts.
+
+### Access
+
+Control **Sharing** and assign a **Maintainer** for the stream.
+
+### Danger Zone
+
+Delete the stream. This is only available once the stream has no activities.

@@ -1,0 +1,86 @@
+---
+title: "Activities"
+description: "The activity registry — lag, freshness, linked transformations, and everything configured on each activity."
+---
+
+## Activities List
+
+The Activities page lists every activity across your streams, with lag and freshness at a glance.
+
+| Column | Description |
+| --- | --- |
+| **Activity** | The activity's name and description. |
+| **Stream** | The stream the activity belongs to. |
+| **Last Activity Row** | When the last row was recorded, and when it was last seen. |
+| **Last Attempted Pull** | When data was last attempted to be pulled. |
+| **Last Resynced At** | When the activity was last fully resynced. |
+| **Transformations** | Number of transformations feeding the activity. |
+| **Status** | Freshness status against staleness thresholds. |
+
+Every column is searchable and sortable.
+
+---
+
+## Activity Detail
+
+Clicking into an activity opens its detail page — processing metadata alongside everything configured on that activity.
+
+### Header
+
+Shows the activity's status, visibility, maintainer, and processing metadata — **Last Checked**, **Last Data Saw**, **Last Data Timestamp**, and **Last Resynced**.
+
+<Tip>
+  **Edit tags** lets you attach existing activity tags or create a new one — tags created here are automatically scoped to activities.
+</Tip>
+
+### Activity Settings
+
+Edit the activity's **Name** and **Description**. **Hide from customer journey** keeps it out of journey exploration — useful for high-volume, low-signal activities (like page views) that would otherwise clutter a customer's journey.
+
+### Data Updates
+
+A chart of update runs, switchable between **Rows**, **Cost**, and **Duration**.
+
+### Enriched Attributes
+
+Add attribute tables from other tables in the warehouse to enrich the activity, each defined by a join condition. Attached tables can be removed at any time.
+
+### Important Dates
+
+Add dates — a label, a timestamp, and a description — to give plots of this activity context, for example flagging when a billing migration happened.
+
+### Dependencies
+
+<Columns cols={3}>
+  <Card title="Total Pipeline Datasets" icon="database">
+    Datasets from this activity that are referenced by workflows.
+  </Card>
+
+  <Card title="Total Models" icon="chart-line">
+    Metrics, dimensions, and cohorts built from this activity.
+  </Card>
+
+  <Card title="Total Shared Datasets" icon="share-nodes">
+    Datasets from this activity shared with others.
+  </Card>
+</Columns>
+
+### Transformations
+
+Links directly to the transformation(s) that power the activity.
+
+### Attributes
+
+Opens a modal to review every attribute on the activity, adjust descriptions and types where allowed, and create activity dimensions from selected columns. You can also create a **Metric** directly from here.
+
+### Models
+
+Shows related models — metrics and dimensions built from this activity — with a link to open them.
+
+### Access
+
+Control **Sharing** and assign a **Maintainer** for the activity.
+
+### Runtime
+
+Override the company's default staleness thresholds for this activity, and turn on **Anomaly Detection**.

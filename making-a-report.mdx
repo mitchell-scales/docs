@@ -1,0 +1,232 @@
+---
+title: "Making a Report"
+description: "Build dashboards combining charts, tables, metric cards, and AI insights to communicate data clearly across your team."
+---
+
+Reports are flexible dashboards made up of individual elements arranged to tell a story with your data. Every report has a title, a description, and report-level controls for date range and granularity that are always visible at the top.
+
+You can add elements by clicking them in the right panel — they'll appear at the bottom of the report — or by dragging and dropping them into position. Every element has a **six-dot handle** in its top-left corner for reordering. Elements can also be placed side by side to create multi-column layouts.
+
+<Columns cols={2}>
+  <Card title="Full Width" icon="arrows-left-right">
+    Stretches the report canvas edge to edge. Best for wide tables and dense dashboards.
+  </Card>
+
+  <Card title="Page Width" icon="arrows-left-right-to-line">
+    Constrains the report to a readable page width. Better for narrative-led reports.
+  </Card>
+</Columns>
+
+---
+
+## Staging and Publishing
+
+Saving a report follows a staged-then-published model, keeping your live report untouched while you keep working.
+
+<Steps>
+  <Step title="Save for the first time">
+    Creates the **production version** — what your team sees when they open the report.
+  </Step>
+  <Step title="Save again">
+    Every save after that updates a separate **staged version** instead, leaving production untouched. Keep editing and saving as needed.
+  </Step>
+  <Step title="View Report">
+    Opens the staged report screen, distinct from the edit screen.
+  </Step>
+  <Step title="Push to Production">
+    Replaces the live report with your staged content.
+  </Step>
+</Steps>
+
+---
+
+## UI Elements
+
+UI elements control the structure and layout of your report.
+
+<Columns cols={2}>
+  <Card title="Section" icon="h1">
+    Breaks the report into named chapters with their own title, description, filters, and time overrides. Sections appear in the navigation sidebar.
+  </Card>
+
+  <Card title="Text" icon="text">
+    Adds a block of text formatted as body, heading, bulleted list, or numbered list.
+  </Card>
+
+  <Card title="Divider" icon="minus">
+    Adds a horizontal line to create a visual break in the flow of the report.
+  </Card>
+
+  <Card title="Action" icon="play">
+    Embeds a workflow action so readers can provide inputs and trigger a workflow directly from the report.
+  </Card>
+</Columns>
+
+### Sections in detail
+
+Beyond a title and description, each section can independently override the report-level date range and granularity — so one section can show year-to-date data while another shows a rolling 30 days. You can also attach filters scoped only to that section, for example locking it to a specific product or campaign. Sections always appear in the navigation sidebar, letting readers jump directly to the part they need.
+
+---
+
+## Data Elements
+
+Data elements pull from either **models** or **datasets**. These are covered in their respective sections of the documentation.
+
+<Tip>
+  Whenever you add a dimension breakdown to any data element — plot, metric card, or table — you get breakdown settings to control what's shown: the top N by value, the bottom N by value, or the first N alphabetically. You set how many items N represents.
+</Tip>
+
+### Plot
+
+Plots are the primary charting element. The two key choices when configuring a plot are the **mode** and the **plot type**.
+
+**Mode** controls what the x-axis represents. Over Time plots your data at each time granularity. Cumulative plots your data across a breakdown dimension.
+
+| Plot Type | Over Time | Cumulative |
+| --- | :-: | :-: |
+| Line | ✓ |  |
+| Bar | ✓ | ✓ |
+| Stack | ✓ | ✓ |
+| Pie |  | ✓ |
+| Scatter | ✓ | ✓ |
+
+<Note>
+  Bar and Stack plots can be flipped between vertical and horizontal orientation.
+</Note>
+
+**Source** is either Models or Dataset. When set to Models, you select one or more metrics, then optionally add a breakdown dimension to split them out.
+
+**Filter**, **Range**, and **Compare** are all configurable per element. Each has an **Allow Report Setting** toggle — when enabled, the report-level value takes precedence; when disabled, the element uses its own setting independently. Comparisons can be set to the previous range or the previous year.
+
+---
+
+#### Plot Types
+
+**Line** connects a data point at each time granularity with a smooth line. Hovering shows the value in a tooltip. Incomplete periods — such as the current week or month — appear with a dotted line and a dotted circle to indicate the data isn't final yet.
+
+**Bar** renders the same data as bars rather than connected points. When a breakdown is added, each dimension value appears as a separate bar within each time period.
+
+**Stack** is the same as bar, but breakdown values are stacked into a single bar rather than shown side by side.
+
+**Pie** is always cumulative and requires a breakdown dimension. Hovering over a segment shows both the value and its share of the total. You can switch between a standard pie and a donut in the configurator — and for the donut, you can show the sum, average, max, or min in the centre.
+
+<Warning>
+  Pie charts do not support comparisons. They show composition at a point in time, not change over time.
+</Warning>
+
+**Scatter** plots individual points with no connecting lines, available in both Over Time and Cumulative modes.
+
+---
+
+### Plot Annotations
+
+Annotations layer markers onto a plot to explain spikes, dips, or notable changes.
+
+<Columns cols={3}>
+  <Card title="Company Events" icon="building">
+    Events configured in company settings, layered onto the plot.
+  </Card>
+
+  <Card title="Activity Events" icon="bolt">
+    Events tied to a specific activity — for example, switching from one data source to another.
+  </Card>
+
+  <Card title="Custom Annotations" icon="pen">
+    Manually added notes for release notes, campaign starts, launches, or incidents.
+  </Card>
+</Columns>
+
+### Plot Menu (⋮)
+
+The options menu in the element's configuration panel offers:
+
+| Action | Description |
+| --- | --- |
+| **Copy Config** | Copies the plot's configuration. |
+| **Convert to Datasets** | Converts the plot into a dataset. |
+| **Duplicate** | Duplicates the plot. |
+| **Delete** | Deletes the plot. |
+
+---
+
+### Metric Card
+
+Metric cards display your most important numbers prominently. The source can be Models or Dataset. There are two Card Styles:
+
+<Columns cols={2}>
+  <Card title="Big Numbers" icon="hashtag">
+    Displays multiple metrics as large figures side by side. Supports filters, date range, and comparisons. When a comparison is enabled, the change shows as a percentage, a value, or a delta — and you can set whether higher is better, which controls whether the indicator is green or red.
+  </Card>
+
+  <Card title="Breakdown" icon="diamond">
+    Displays a single metric broken down by a dimension — for example, emails opened by campaign. Supports the same filter, range, and comparison options as Big Numbers.
+  </Card>
+</Columns>
+
+---
+
+### Table
+
+<Columns cols={2}>
+  <Card title="Data Table" icon="table">
+    Displays row-level records from a list, a dataset, or a mapping table.
+  </Card>
+
+  <Card title="Pivot Table" icon="arrows-to-dotted-line">
+    Aggregates metrics across dimensions, either cumulatively or over time.
+  </Card>
+</Columns>
+
+**Data Table sources:**
+
+A **List** is defined in the Models section of the platform. A **Dataset** lets you pick a specific tab — either a group-by tab or a duplicate parent tab — and pre-filter it with a date range. A **Mapping Table** lets you view and interact with the mapping tables used in your data transformations, including user input to those tables. Mapping tables are covered in the Infrastructure section.
+
+**Pivot Table modes:**
+
+In **Cumulative** mode, you select multiple metrics and dimensions, with full filter and compare support. Use the **Configure** button on the table itself to switch individual metrics and dimensions between rows and columns. In **Over Time** mode, you select a granularity and the table shows your metrics at each time period, also supporting multiple metrics and comparisons.
+
+---
+
+### AI Insight
+
+AI Insight elements generate structured, AI-written analysis from the data already in your report. You build an insight by adding sections — each with a different output format and its own prompt.
+
+<Columns cols={4}>
+  <Card title="Takeaway" icon="lightbulb">
+    A concise summary of the single most important finding.
+  </Card>
+
+  <Card title="Cards" icon="square">
+    Recommended actions, each presented as an individual card.
+  </Card>
+
+  <Card title="Bullets" icon="list">
+    Key points surfaced as a scannable bulleted list.
+  </Card>
+
+  <Card title="Examples" icon="lightbulb-exclamation">
+    Specific data points or rows that illustrate the finding.
+  </Card>
+</Columns>
+
+For each section you write a prompt directing what the AI should produce. You then select one or more **sources** from the elements already in the report — any metric card, plot, or table — which the AI reads from to generate its output.
+
+---
+
+## Element Controls
+
+These are available on every data element across the report.
+
+<Columns cols={2}>
+  <Card title="Configure" icon="sliders-h">
+    Opens per-element settings — colours, data labels, company milestones, and for tables, sort order and other display options. For plots, this also includes hiding the legend, showing values directly on the plot, and displaying it as a delta.
+  </Card>
+
+  <Card title="Information" icon="ellipsis-stroke-vertical">
+    Shows when the data was last processed, how long the query took, the sources, the metrics used, and the underlying activities the element is built on. From here you can also **download to CSV** or **send directly to a Google Sheet**.
+  </Card>
+</Columns>
+
+<Tip>
+  The robot icon in the top ribbon opens a new agent pre-filled with the context of the page you're on. Use it to ask questions about the report or dig into the data without leaving the page.
+</Tip>
