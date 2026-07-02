@@ -3,14 +3,15 @@
   "name": "Polyform",
   "theme": "luma",
   "colors": {
-    "primary": "#ef7025",
-    "light": "#eec9bc",
-    "dark": "#4fa1ab"
+    "primary": "#3E6B52",
+    "light": "#6FAE8C",
+    "dark": "#2F5640"
   },
   "favicon": "/favicon.svg",
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "light": "/images/polyform-logo-light.png",
+    "dark": "/images/polyform-logo-black.png",
+    "href": "https://polyform.ai/"
   },
   "navbar": {
     "primary": {
@@ -31,7 +32,8 @@
             "pages": [
               "reports-index",
               "making-a-report"
-            ]
+            ],
+            "icon": "chart-line"
           },
           {
             "group": "Datasets",
@@ -40,25 +42,29 @@
               "activity-datasets",
               "sql-datasets",
               "time-datasets"
-            ]
+            ],
+            "icon": "table"
           },
           {
             "group": "Journeys",
             "pages": [
               "journeys"
-            ]
+            ],
+            "icon": "route"
           },
           {
             "group": "Models",
             "pages": [
               "metrics"
-            ]
+            ],
+            "icon": "sigma"
           },
           {
             "group": "Workflows",
             "pages": [
               "workflows"
-            ]
+            ],
+            "icon": "bolt"
           },
           {
             "group": "Infrastructure",
@@ -74,20 +80,34 @@
           {
             "group": "Tasks",
             "expanded": true,
-            "pages": []
+            "pages": [],
+            "icon": "list-check"
           },
           {
             "group": "Agents",
-            "pages": []
+            "pages": [],
+            "icon": "robot"
           }
-        ]
+        ],
+        "icon": "layer-group"
       },
       {
-        "tab": "Business"
+        "tab": "Business",
+        "icon": "briefcase"
       }
     ]
   },
   "footer": {
     "socials": {}
+  },
+  "background": {
+    "decoration": "grid",
+    "color": {
+      "light": "#FFFFFF",
+      "dark": "#0D0F12"
+    }
+  },
+  "fonts": {
+    "family": "Inter"
   }
 }
