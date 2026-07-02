@@ -1,0 +1,52 @@
+---
+title: "Overview"
+description: "System health, stale objects, and recent operational changes."
+---
+
+The Overview page is the landing page for Infrastructure — a holistic view of the transformations and processing happening across the account. Each area it surfaces is covered in more detail on its own tab (Streams, Activities, Transformations, and so on); this page is just the health check.
+
+<Frame>
+  ![Screenshot 2026 07 02 At 14 31 17](/images/Screenshot-2026-07-02-at-14.31.17.png)
+</Frame>
+
+## Summary Cards
+
+<Columns cols={4}>
+  <Card title="Delayed Activities" icon="wave-pulse">
+    Activities past the configured freshness window.
+  </Card>
+
+  <Card title="Awaiting Production" icon="wrench">
+    Draft datasets updated more recently than production.
+  </Card>
+
+  <Card title="Maintenance Items" icon="clock-rotate-left">
+    Activities or transformations in maintenance or error states.
+  </Card>
+
+  <Card title="Stale Tables" icon="database">
+    Warehouse tables outside the configured freshness window.
+  </Card>
+</Columns>
+
+## Streams
+
+Below the summary cards, each stream shows its recent run history, or **No runs** if it hasn't run yet, with a link to view its latest run.
+
+## Attention Lists
+
+Three lists surface anything that needs a closer look:
+
+- **Delayed Activities** — activities whose last activity row is beyond the configured freshness window.
+- **Transformations Awaiting Production** — draft datasets updated within the last week and newer than production, or not yet in production.
+- **Maintenance or Error** — activities and transformations currently in maintenance or error states.
+
+## Freshness Thresholds
+
+Standard freshness thresholds used across infrastructure, streams, activities, and tables are set in company settings, and drive the statuses shown throughout this page.
+
+| Threshold | Meaning |
+| --- | --- |
+| **Green** | Freshness at or under this age is shown as healthy. |
+| **Yellow** | Freshness between green and red is shown as delayed. |
+| **Red** | Freshness at or beyond this age is shown as stale. |

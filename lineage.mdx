@@ -1,0 +1,54 @@
+---
+title: "Lineage"
+description: "Trace how an object is powered and what it powers across infrastructure."
+---
+
+The Lineage tab lets you pick any infrastructure object and see everything connected to it — what feeds into it, and what depends on it.
+
+<Frame>
+  ![Image](/images/image-6.png)
+</Frame>
+
+<Steps>
+  <Step title="Choose an object type">
+    Activities, Datasets, Metrics, Dimensions, Lists, Transformations, Warehouse Tables, or External Exports.
+  </Step>
+  <Step title="Select the specific object">
+    Search for the object you want to investigate within that type.
+  </Step>
+  <Step title="View its lineage">
+    See everything upstream and downstream of it in one view.
+  </Step>
+</Steps>
+
+## Example: A Metric
+
+For a metric, lineage shows:
+
+<Columns cols={2}>
+  <Card title="What Powers It" icon="arrow-left">
+    The activity (or activities) it aggregates, the transformations that power those activities, and the datasets that power the transformations.
+  </Card>
+
+  <Card title="What It Powers" icon="arrow-right">
+    The reports the metric is used in, and any workflows that pull from those reports.
+  </Card>
+</Columns>
+
+<Tip>
+  Lineage is especially useful for investigating dependencies and mitigating the impact before changing something with downstream consumers.
+</Tip>
+
+## Node Actions
+
+Every object shown in the lineage chart has two icons of its own:
+
+<Columns cols={2}>
+  <Card title="Open" icon="arrow-up-right-from-square">
+    Opens that object directly in a new tab — for example, jumping straight to a related transformation.
+  </Card>
+
+  <Card title="View Lineage" icon="code-branch">
+    Re-centres the chart on that object, so you can keep exploring outward from it.
+  </Card>
+</Columns>

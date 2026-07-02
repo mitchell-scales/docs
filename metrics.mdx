@@ -1,0 +1,99 @@
+---
+title: "Metrics"
+description: "Reusable aggregations built on top of activities, used across reports, plots, and cards throughout Polyform."
+---
+
+A metric is an **aggregation on top of an activity** — things like sum of revenue, count of leads, or average time between events. Every metric has a timestamp, making them inherently time-series aware and ready to be plotted, filtered, and compared across any date range or granularity.
+
+<Frame>
+  ![Screenshot 2026 07 02 At 15 12 16](/images/Screenshot-2026-07-02-at-15.12.16.png)
+</Frame>
+
+---
+
+## The Metrics List
+
+The Metrics page shows a table of all metrics available to you. Each row shows the metric name, an optional description, and the **activities** that feed into it.
+
+You can **search** by name using the search bar, and **filter by stream** using the dropdown on the left. The default view shows all streams, but if your organisation has multiple streams you can scope the list to just one.
+
+<Note>
+  The Metrics page is part of the Models tab, which also contains Dimensions and Lists. Use the tabs at the top to switch between them.
+</Note>
+
+### Actions
+
+Each metric row has up to three actions, depending on your permissions:
+
+<Columns cols={3}>
+  <Card title="Edit" icon="pencil">
+    Edit the metric's name, description, default dimensions, tags, and recommended plots.
+  </Card>
+
+  <Card title="Explore" icon="chart-line">
+    Opens a temporary plot of the metric over time where you can freely explore breakdowns, filters, ranges, and granularities.
+  </Card>
+
+  <Card title="Info (⋮)" icon="info-circle">
+    Opens the column plan, showing the metric's structure and its underlying sources.
+  </Card>
+</Columns>
+
+---
+
+## Metric Detail
+
+Clicking the name of a metric opens a detail panel with two sections side by side: **Column Plan** and **Underlying Sources**.
+
+### Column Plan
+
+The column plan is the saved definition of how the metric is built. It shows the full structure in a visual, step-by-step layout:
+
+- **Stream** — which stream the metric sits on
+- **Valid Activities** — the activities that feed into it
+- **Cohort** — the starting population of records (e.g. start with all Submitted Lead events)
+- **Append** — any additional activities joined on (e.g. append the first Lead Sent activity that comes after)
+- **Group** — the aggregation applied (e.g. average of Hours to Lead Sent)
+- **Metric** — the resulting metric output
+
+### Underlying Sources
+
+The right panel shows what's powering the column plan, broken into two parts:
+
+**Activities that power this plan** — each contributing activity is listed with its name and a description of what it captures. Clicking through takes you directly to that activity.
+
+**Transformations powering these activities** — any transformations that feed into those activities are listed here, with a link through to each one. If no transformations are involved, this will show as empty. There is also a view of the **SQL query** powering the activity for those who want to inspect it directly.
+
+---
+
+## Explore
+
+Pressing **Explore** on any metric opens a temporary, interactive plot of that metric over time. From here you can add breakdowns, apply filters, change the date range, and switch granularities — all without touching a report. It's designed for quick ad hoc investigation before you decide where or how to use a metric formally.
+
+<Tip>
+  If you find yourself regularly exploring a metric with the same breakdown or filter applied, you can save that view as a recommended plot directly from the Explore screen.
+</Tip>
+
+---
+
+## Editing a Metric
+
+If you have edit permissions, you can update the following:
+
+<Frame>
+  <img
+    src="/images/Screenshot-2026-07-02-at-15.16.13.png"
+    alt="Screenshot 2026 07 02 At 15 16 13"
+    title="Screenshot 2026 07 02 At 15 16 13"
+    className="mx-auto"
+    style={{ width:"59%" }}
+  />
+</Frame>
+
+**Name and description** — how the metric appears across the platform.
+
+**Tags** — group related metrics together. For example, tagging all email-related metrics makes them easier to find and manage as your metric library grows.
+
+**Default dimensions** — when a user drills into a plot of this metric, default dimensions determine which extra columns are shown alongside the date and value. For example, setting Campaign ID as a default dimension means that whenever someone drills into an email metric, the campaign ID is always surfaced automatically.
+
+**Recommended plots** — plots you have saved from the Explore view. If you're always looking at a metric with a particular breakdown and filter applied — say, emails sent by campaign excluding test campaigns — you can save that as a recommended plot and it will appear here for anyone exploring the metric.

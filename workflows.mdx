@@ -1,0 +1,85 @@
+---
+title: "Workflows"
+description: "Modular routines for processing, moving, and acting on your data — from materialisation to AI-powered automation."
+---
+
+A workflow is a **modular routine of processing data** where you can perform actions on it — materialise it, send it elsewhere, process it in specific ways, interact with it through AI, or set up chatbots, among others.
+
+<Frame>
+  ![Screenshot 2026 07 02 At 15 23 13](/images/Screenshot-2026-07-02-at-15.23.13.png)
+</Frame>
+
+---
+
+## Workflow Statuses
+
+Four summary cards give an at-a-glance view of how workflows are performing overall.
+
+<Columns cols={4}>
+  <Card title="Loaded Workflows" icon="layer-group">
+    Total workflows loaded.
+  </Card>
+
+  <Card title="Loaded Successful" icon="circle-check">
+    Runs completed successfully.
+  </Card>
+
+  <Card title="Loaded Failed" icon="circle-xmark">
+    Runs that failed.
+  </Card>
+
+  <Card title="Loaded Success Rate" icon="chart-simple">
+    Overall success rate across runs.
+  </Card>
+</Columns>
+
+---
+
+## Folders
+
+Folders group workflows so they're easier to find as your library grows. Select a folder to filter the table, or **All workflows** to see everything.
+
+---
+
+## The Workflows Table
+
+Each row lists a workflow and the key information you need to understand what it's doing and how it's performing.
+
+| Column | Description |
+| --- | --- |
+| **Workflow** | Title and description of the workflow. |
+| **Trigger** | What sets the workflow off — e.g. cron schedule, manual. |
+| **Last Status** | Status of the most recent run. |
+| **Last Ran** | When the workflow last ran. |
+| **7-Day Health** | Status composition of runs over the last seven days. |
+
+<Tip>
+  Hover over a segment of the **7-Day Health** bar to see the status of that individual run — useful for spotting exactly when a workflow started failing.
+</Tip>
+
+### Row Actions
+
+Each row offers two ways to take further action.
+
+<Columns cols={2}>
+  <Card title="Folder icon" icon="folder-open">
+    View the latest run.
+  </Card>
+
+  <Card title="Options menu (⋮)" icon="ellipsis-vertical">
+    Opens further actions — see below.
+  </Card>
+</Columns>
+
+The options menu (⋮) covers the following:
+
+| Action | Description |
+| --- | --- |
+| **Open workflow** | Opens the workflow for editing. |
+| **Share** | Shares the workflow with others. |
+| **View instructions** | Shows the workflow's configured instructions. |
+| **View saved values** | Shows the values saved by the workflow. |
+| **Update tags** | Edit the workflow's tags. |
+| **Run now** | Triggers an immediate run. |
+| **Rerun failed tasks** | Reruns only the tasks that failed in the previous run. |
+| **Delete** | Deletes the workflow. |

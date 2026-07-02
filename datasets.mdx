@@ -1,0 +1,88 @@
+---
+title: "Datasets"
+description: "Browse, favourite, and organise every dataset available across your company."
+---
+
+The Datasets page lists every dataset available to you, with views for filtering by recency, favourites, and usage.
+
+<Frame>
+  ![Screenshot 2026 07 02 At 15 07 08](/images/Screenshot-2026-07-02-at-15.07.08.png)
+</Frame>
+
+## Top Bar
+
+The top bar switches between different views of the dataset list.
+
+| Tab | Description |
+| --- | --- |
+| **Recently Viewed** | Datasets ordered by when you last viewed them. |
+| **Favorited** | Datasets you've starred. Press the star icon on any dataset to add it here. |
+| **Workflow** | Datasets used in workflows. |
+| **Transformation** | Datasets used in transformations to generate activities. |
+| **All** | Every dataset, regardless of recency or usage. |
+
+---
+
+## Filtering
+
+<Columns cols={2}>
+  <Card title="Teams" icon="users">
+    If your company has teams set up, filter the list by team access.
+  </Card>
+
+  <Card title="Folders" icon="folder">
+    Datasets can be grouped into folders, which can themselves contain subfolders.
+  </Card>
+</Columns>
+
+---
+
+## Create
+
+Clicking **Create** lets you choose one of three dataset types.
+
+<Columns cols={3}>
+  <Card title="Activity" icon="bolt">
+    Activity-stream-driven analysis
+  </Card>
+
+  <Card title="SQL" icon="code">
+    Write a custom SELECT
+  </Card>
+
+  <Card title="Time" icon="calendar">
+    Generate rows on a time grain
+  </Card>
+</Columns>
+
+<Note>
+  Each type has its own dedicated page covering its options in detail.
+</Note>
+
+---
+
+## Row Actions
+
+Each dataset row offers two ways to take further action.
+
+<Columns cols={2}>
+  <Card title="Options menu (⋮)" icon="ellipsis-vertical">
+    Opens further actions — see below.
+  </Card>
+
+  <Card title="Information (i)" icon="circle-info">
+    Opens a column plan preview, showing the activities that build up the dataset's definition — no need to open the dataset itself.
+  </Card>
+</Columns>
+
+The options menu (⋮) covers the following:
+
+| Action | Description |
+| --- | --- |
+| **Control** | Opens the dataset editor to change the dataset's definition. |
+| **Edit properties** | Edit the title, permissions, description, and folders. |
+| **Share** | Share the dataset with an existing team. |
+| **Add to folder** | Add the dataset to a folder, or create a new one. |
+| **Create workflow** | Quickly create a **Materialization** or **Google Sheets** workflow. |
+| **Create transformation** | Build activities from this dataset. |
+| **Delete** | Deletes the dataset. |
