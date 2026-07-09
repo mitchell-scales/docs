@@ -1,0 +1,90 @@
+---
+title: "Dimensions"
+description: "Breakdowns and filters built from shared model logic, used to split metrics beyond timestamp and value."
+---
+
+<Frame>
+  ![Screenshot 2026 07 09 At 10 12 16](/images/Screenshot-2026-07-09-at-10.12.16.png)
+</Frame>
+
+A dimension is any additional column found on row-level data beyond the timestamp and the aggregated value — it's what you split a metric by.
+
+<Note>
+  Dimensions share the same top bar as Metrics and Lists — see [Metrics](/metrics) for the Stream filter and search.
+</Note>
+
+## Dimension Types
+
+<Columns cols={1}>
+  <Card title="Shared Relative" icon="link" horizontal>
+    Pulls an activity-generated dimension from the same customer's other activities — for example, pulling in when someone last registered for an event onto a different activity.
+  </Card>
+
+  <Card title="Attribute Table" icon="puzzle-piece" horizontal>
+    Backed by a warehouse table, joined via a key on the activity — for example, a campaign ID on email activities linking to a campaign table, from which you can pull campaign name, campaign type, and so on.
+  </Card>
+
+  <Card title="Customer" icon="user" horizontal>
+    Pulls from customer enrichment tables, built up from one or multiple sources that enrich customer information.
+  </Card>
+
+  <Card title="Computed" icon="sigma" horizontal>
+    Applies additional logic on top of established columns — for example, age grouping or activity grouping.
+  </Card>
+
+  <Card title="Activity" icon="bolt" horizontal>
+    Pulls straight from a column on the activity itself — for example, a column on Email Opened or Started Session.
+  </Card>
+</Columns>
+
+---
+
+## The Dimensions Table
+
+| Column | Description |
+| --- | --- |
+| **Model** | The dimension's name, grouped under its source — a Shared Relative, an Attribute Table, or an Activity. |
+| **Activity** | The activity or table the dimension is sourced from. |
+| **Actions** | Row-level actions for the dimension. |
+
+---
+
+## Dimension Detail
+
+Clicking the name of a dimension opens a detail panel with two sections side by side: **Column Plan** and **Underlying Sources**, mirroring the Metric Detail panel.
+
+<Frame>
+  ![Screenshot 2026 07 09 At 10 23 21](/images/Screenshot-2026-07-09-at-10.23.21.png)
+</Frame>
+
+### Column Plan
+
+The saved plan that defines how the dimension is built:
+
+- **Stream** — which stream the dimension sits on
+- **Valid Activities** — the activities the dimension can be used on
+- **Dimension** — the resulting dimension output
+
+### Underlying Sources
+
+**Activities that power this plan** — each contributing activity is listed with its name and a description of what it captures.
+
+**Transformations powering these activities** — any transformations feeding those activities are listed here, with a view of the SQL query powering each one. If no transformations are involved, this shows as empty.
+
+---
+
+## Editing a Dimension
+
+Pressing the pencil icon opens the edit window, where you can update:
+
+<Frame>
+  ![Screenshot 2026 07 09 At 10 23 34](/images/Screenshot-2026-07-09-at-10.23.34.png)
+</Frame>
+
+**Name and description** — how the dimension appears across the platform.
+
+**Type** — shown for reference (Shared Relative, Attribute Table, Customer, Computed, or Activity), set when the dimension was first created.
+
+**Only allow on activities** — limits the dimension so it can only be applied to specific activities, rather than being available everywhere it could apply.
+
+**Tags** — group related dimensions together.
