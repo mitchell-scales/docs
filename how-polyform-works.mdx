@@ -1,3 +1,34 @@
 ---
 title: "How Polyform Works"
 ---
+
+Polyform turns raw data sitting in your warehouse into activities, models, metrics, and reports — each layer built on top of the one before it.
+
+<Steps>
+  <Step title="Data Sources">
+    Everything starts with your underlying data sources, living in your data warehouse.
+  </Step>
+  <Step title="Activity Datasets">
+    A SQL dataset is built on top of a data source, mapping it into the shape a transformation needs.
+  </Step>
+  <Step title="Transformations create Activities">
+    A transformation points at that dataset and generates the activity. An **activity** is a single, actionable point on a customer's journey — Email Opened, Email Received, Started Session, and so on.
+
+    One dataset can power several activities at once. An emailer table, for example, might hold opens, clicks, receives, and bounces all in the same underlying table — so a single dataset, with a transformation pointed at it, generates each of those activities in turn.
+  </Step>
+  <Step title="Activities power everything downstream">
+    With activities in place, you can search a customer's journey across every activity stream, or build further activity datasets that temporally join specific behaviors together for deeper analysis.
+  </Step>
+  <Step title="Models">
+    Activities and activity datasets feed models — reusable definitions of customer behavior, such as lifetime revenue or other financial models.
+  </Step>
+  <Step title="Metrics">
+    On top of models, metrics aggregate the data into the numbers you actually track — sums, counts, averages, and more.
+  </Step>
+  <Step title="Reports">
+    Metrics feed the reporting layer, where they're visualized over time — cumulatively, broken down, compared, however you need.
+  </Step>
+  <Step title="Workflows">
+    At any point along the way, workflows can export data back out — to Google Sheets, back into the warehouse, or wherever else it needs to go.
+  </Step>
+</Steps>

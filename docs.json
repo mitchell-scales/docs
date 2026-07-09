@@ -27,6 +27,7 @@
         "pages": [
           "how-polyform-works",
           "company-settings",
+          "common-questions",
           {
             "group": "Reports",
             "pages": [
@@ -55,7 +56,8 @@
           {
             "group": "Models",
             "pages": [
-              "metrics"
+              "metrics",
+              "dimensions"
             ],
             "icon": "sigma"
           },
