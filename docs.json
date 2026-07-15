@@ -82,12 +82,16 @@
           {
             "group": "Tasks",
             "expanded": true,
-            "pages": [],
+            "pages": [
+              "tasks"
+            ],
             "icon": "list-check"
           },
           {
             "group": "Agents",
-            "pages": [],
+            "pages": [
+              "agents"
+            ],
             "icon": "robot"
           }
         ],

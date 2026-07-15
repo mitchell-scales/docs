@@ -18,7 +18,7 @@ The Metrics page shows a table of all metrics available to you. Each row shows t
 You can **search** by name using the search bar, and **filter by stream** using the dropdown on the left. The default view shows all streams, but if your organisation has multiple streams you can scope the list to just one.
 
 <Note>
-  The Metrics page is part of the Models tab, which also contains Dimensions and Lists. Use the tabs at the top to switch between them.
+  The Metrics page is part of the Models tab, which also contains [Dimensions](/dimensions) and Lists. Use the tabs at the top to switch between them.
 </Note>
 
 ### Actions
@@ -55,6 +55,10 @@ The column plan is the saved definition of how the metric is built. It shows the
 - **Append** — any additional activities joined on (e.g. append the first Lead Sent activity that comes after)
 - **Group** — the aggregation applied (e.g. average of Hours to Lead Sent)
 - **Metric** — the resulting metric output
+
+<Tip>
+  This Cohort/Append structure is the same temporal join logic used in [Activity Datasets](/activity-datasets) — a metric's Column Plan is built the same way a dataset's cohort and joins are.
+</Tip>
 
 ### Underlying Sources
 

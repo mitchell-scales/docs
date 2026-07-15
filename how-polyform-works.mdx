@@ -9,26 +9,26 @@ Polyform turns raw data sitting in your warehouse into activities, models, metri
     Everything starts with your underlying data sources, living in your data warehouse.
   </Step>
   <Step title="Activity Datasets">
-    A SQL dataset is built on top of a data source, mapping it into the shape a transformation needs.
+    A [SQL dataset](/sql-datasets) is built on top of a data source, mapping it into the shape a transformation needs.
   </Step>
   <Step title="Transformations create Activities">
-    A transformation points at that dataset and generates the activity. An **activity** is a single, actionable point on a customer's journey — Email Opened, Email Received, Started Session, and so on.
+    A [transformation](/transformations) points at that dataset and generates the activity. An **activity** is a single, actionable point on a customer's journey — Email Opened, Email Received, Started Session, and so on. Good activities are simple, self-sufficient, and named the way your business already talks about them.
 
     One dataset can power several activities at once. An emailer table, for example, might hold opens, clicks, receives, and bounces all in the same underlying table — so a single dataset, with a transformation pointed at it, generates each of those activities in turn.
   </Step>
   <Step title="Activities power everything downstream">
-    With activities in place, you can search a customer's journey across every activity stream, or build further activity datasets that temporally join specific behaviors together for deeper analysis.
+    With activities in place, you can search a customer's [journey](/journeys) across every activity stream, or build further [activity datasets](/activity-datasets) that temporally join specific behaviors together for deeper analysis.
   </Step>
   <Step title="Models">
-    Activities and activity datasets feed models — reusable definitions of customer behavior, such as lifetime revenue or other financial models.
+    Activities and activity datasets feed models — reusable definitions of customer behavior such as [metrics](/metrics) and [dimensions](/dimensions) — including things like lifetime revenue or other financial models.
   </Step>
   <Step title="Metrics">
-    On top of models, metrics aggregate the data into the numbers you actually track — sums, counts, averages, and more.
+    On top of models, [metrics](/metrics) aggregate the data into the numbers you actually track — sums, counts, averages, and more.
   </Step>
   <Step title="Reports">
-    Metrics feed the reporting layer, where they're visualized over time — cumulatively, broken down, compared, however you need.
+    Metrics feed the [reporting layer](/making-a-report), where they're visualized over time — cumulatively, broken down, compared, however you need.
   </Step>
   <Step title="Workflows">
-    At any point along the way, workflows can export data back out — to Google Sheets, back into the warehouse, or wherever else it needs to go.
+    At any point along the way, [workflows](/workflows) can export data back out — to Google Sheets, back into the warehouse, or wherever else it needs to go.
   </Step>
 </Steps>

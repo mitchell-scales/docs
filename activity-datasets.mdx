@@ -1,3 +1,172 @@
 ---
 title: "Activity Datasets"
 ---
+
+An activity dataset is built through a configurator, starting from a customer stream and shaped through a cohort, filters, customer columns, and temporal joins.
+
+## What Is an Activity?
+
+An activity is a single, actionable point on a customer's journey — Email Opened, Product Ordered, Started Session, and so on. A series of activities for the same customer forms an activity stream.
+
+<Note>
+  Activities are created in [SQL Datasets](/sql-datasets), where a transformation points at a query to generate them. An activity dataset is where you _use_ activities that already exist — building cohorts and joins on top of them — not where they're built.
+</Note>
+
+---
+
+## The Dataset Editor
+
+<Columns cols={2}>
+  <Card title="Edit Config" icon="sliders">
+    Opens the dataset setup screen, where the cohort, filters, and joins are configured.
+  </Card>
+
+  <Card title="Report" icon="file-lines">
+    Opens a dataset report.
+  </Card>
+</Columns>
+
+The top bar shows **Total Rows** and query **Duration** once run, alongside controls to add a **Column**, **Hide/Show** columns, switch between **Table** and SQL view, **Export**, and **Save**. The left panel lists the dataset itself — starting as **Parent** with no columns until a cohort is configured — plus any **Tabs** you've added.
+
+---
+
+## Configuring the Dataset
+
+<Steps>
+  <Step title="Select a stream">
+    Choose the customer stream the dataset is built from.
+  </Step>
+  <Step title="Define the cohort">
+    Set the starting population as the First, Last, or All occurrences of a specific activity — for example, start with the First of Email Received to see the first email everyone received.
+  </Step>
+  <Step title="Add filters">
+    Filters are built from rules and groups, letting you narrow the cohort down further.
+  </Step>
+  <Step title="Add customer columns">
+    Pull in columns from a customer enrichment source.
+  </Step>
+  <Step title="Add temporal joins">
+    Append related activities using a temporal join — see below for the available join types.
+  </Step>
+</Steps>
+
+---
+
+## Temporal Joins
+
+A temporal join appends columns from another activity without adding or removing rows — it pairs activities by customer and time rather than a foreign key, so any activity can be joined to any other without modelling the relationship in advance.
+
+A join isn't picked from a fixed list — you build it by combining a **position** with a **relation**.
+
+### Position
+
+<Columns cols={4}>
+  <Card title="First" icon="arrow-down-1-9">
+    The first matching activity.
+  </Card>
+
+  <Card title="Last" icon="arrow-up-1-9">
+    The last matching activity.
+  </Card>
+
+  <Card title="Aggregation" icon="function">
+    An aggregation across every matching activity.
+  </Card>
+
+  <Card title="All" icon="asterisk">
+    An advanced option that appends every matching activity, rather than a single row or aggregation.
+  </Card>
+</Columns>
+
+### Relation
+
+<Columns cols={3}>
+  <Card title="Ever" icon="infinity">
+    Regardless of when the joined activity happened relative to the cohort activity.
+  </Card>
+
+  <Card title="Before" icon="backward">
+    Before the cohort activity.
+  </Card>
+
+  <Card title="Before Or On" icon="backward">
+    Before or at the same time as the cohort activity.
+  </Card>
+
+  <Card title="After" icon="forward">
+    After the cohort activity.
+  </Card>
+
+  <Card title="After Or On" icon="forward">
+    After or at the same time as the cohort activity.
+  </Card>
+
+  <Card title="In Between" icon="arrows-left-right">
+    Between the cohort activity and its next occurrence.
+  </Card>
+</Columns>
+
+<Note>
+  Position and relation combine to form the join. **First** \+ **Ever** appends the first time the joined activity ever happened; **Aggregation** \+ **After Or On** aggregates every matching activity from the cohort activity onward.
+</Note>
+
+### Example: Building Lifetime Value Windows
+
+<Steps>
+  <Step title="Set the cohort">
+    Start with **First Ever** of Product Ordered.
+  </Step>
+  <Step title="Add a 3-month window">
+    Append an **Aggregation** that is **After Or On**, restricted to a 3-month relative window, to build a 3-month lifetime value column.
+  </Step>
+  <Step title="Repeat for further windows">
+    Add further appends the same way — **Aggregation**, **After Or On**, within 6 months, 9 months, and so on — to build out lifetime value at each interval.
+  </Step>
+</Steps>
+
+<Note>
+  Temporal joins only add columns — they never duplicate or drop rows.
+</Note>
+
+### Refining a Join
+
+Each join can be refined further, using any combination of the following:
+
+<Columns cols={2}>
+  <Card title="Timing" icon="clock">
+    Restricts the relation to a time window, in minutes, hours, days, months, or years — for example, at least 30 minutes after, or within 30 days.
+  </Card>
+
+  <Card title="Activity Filters" icon="filter">
+    Filters the joined activity's own columns before it's matched — for example, only the last ever email that belongs to a specific campaign.
+  </Card>
+
+  <Card title="Joins" icon="link">
+    Matches specific columns between the cohort activity and the joined activity — for example, matching on Campaign ID to join the last email from the same campaign.
+  </Card>
+
+  <Card title="Relative" icon="shuffle">
+    Conditions the join on its relationship to another specific activity, positioned before or after it. An **Include missing** toggle controls whether rows without that relative activity are still included.
+  </Card>
+</Columns>
+
+### Columns by Join Kind
+
+The columns available to pull in depend on the position:
+
+- **First / Last / All** — pull individual columns straight from the matched row, the same as any other activity.
+- **Aggregation** — pull aggregations instead of row-level values: list aggregations (which pull in a string of values), or numeric aggregations like sum, average, and count.
+
+---
+
+## Tabs
+
+<Columns cols={2}>
+  <Card title="Group-by Tabs" icon="layer-group">
+    Group the dataset by a specific column.
+  </Card>
+
+  <Card title="Filter Tabs" icon="filter">
+    Pre-filter the dataset before it lands in the tab — for example, one dataset covering all emails sent, with individual tabs pre-filtered to specific campaigns.
+  </Card>
+</Columns>
