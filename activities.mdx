@@ -7,6 +7,10 @@ description: "The activity registry — lag, freshness, linked transformations, 
   ![Screenshot 2026 07 02 At 15 27 16](/images/Screenshot-2026-07-02-at-15.27.16.png)
 </Frame>
 
+## What Is an Activity?
+
+An activity is a SQL query representing a single action taken by, or done to, a customer. A series of activities for the same customer forms an activity stream — a simple, shared semantic layer every part of Polyform builds on. This page is the registry of every activity that's been built, alongside its health and configuration; see [Activity Datasets](/activity-datasets) for how activities are built in the first place.
+
 ## Activities List
 
 The Activities page lists every activity across your streams, with lag and freshness at a glance.
@@ -51,7 +55,7 @@ A chart of update runs, switchable between **Rows**, **Cost**, and **Duration**.
 
 ### Enriched Attributes
 
-Add attribute tables from other tables in the warehouse to enrich the activity, each defined by a join condition. Attached tables can be removed at any time.
+Add attribute tables from other tables in the warehouse to enrich the activity, each defined by a join condition. Attached tables can be removed at any time. These are the same attribute tables that power [Attribute Table dimensions](/dimensions).
 
 ### Important Dates
 
@@ -75,7 +79,7 @@ Add dates — a label, a timestamp, and a description — to give plots of this 
 
 ### Transformations
 
-Links directly to the transformation(s) that power the activity.
+Links directly to the [transformation(s)](/transformations) that power the activity.
 
 ### Attributes
 

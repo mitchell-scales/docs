@@ -1,0 +1,25 @@
+---
+title: "Common Questions"
+description: "Answers that pull together threads from across the platform."
+---
+
+## How do I make an activity?
+
+<Steps>
+  <Step title="Explore the underlying tables (optional)">
+    Use a [SQL Dataset](/sql-datasets) to browse the source tables in your warehouse before committing to a query.
+  </Step>
+  <Step title="Write a SQL dataset with the columns you need">
+    Write a SELECT that pulls in every column the activity needs — the required columns (Activity Id, Timestamp), a customer identifier, the activity itself (a column or a fixed value), and any feature columns you want on the activity. See [Transformations](/transformations) for what each of these mappings covers.
+  </Step>
+  <Step title="Save the SQL dataset">
+    Press **Update SQL**, then **Save**.
+  </Step>
+  <Step title="Point a transformation at it">
+    Create a [transformation](/transformations) pointed at the saved dataset, and map its columns in Draft Mapping. This generates the activity.
+  </Step>
+</Steps>
+
+<Note>
+  Feature columns don't need to follow a specific naming format — just name them sensibly. The required and customer columns get mapped into specific fields regardless of what they're originally called, so naming only really matters for readability.
+</Note>

@@ -1,3 +1,41 @@
 ---
 title: "SQL Datasets"
 ---
+
+SQL datasets serve two purposes: exploring your data directly, and creating the underlying tables that transformations point to when building activities.
+
+## The SQL Editor
+
+<Frame>
+  ![Screenshot 2026 07 15 At 17 16 55 1](/images/Screenshot-2026-07-15-at-17.16.55-1.png)
+</Frame>
+
+Write a custom SELECT against any table in your warehouse, using the **Schema** browser on the left to search tables and columns. Press **Run** to preview the result, then **Update SQL** to turn the query into a saved dataset.
+
+| Control | Description |
+| --- | --- |
+| **Allow Writes** | Permits the query to write to the warehouse, rather than just reading. |
+| **Format** | Formats the SQL. |
+| **Copy SQL** | Copies the query. |
+| **Update SQL** | Saves the query and generates the dataset. |
+| **Cancel** | Discards changes and exits the SQL editor. |
+
+## Two Purposes
+
+<Columns cols={2}>
+  <Card title="Exploration" icon="magnifying-glass">
+    Pull in the columns you want, browse the data, group it, and explore it directly — no need to build a full activity dataset just to look something up.
+  </Card>
+
+  <Card title="Source Tables for Transformations" icon="bolt">
+    Write the custom SELECT that a transformation will point to when creating activities — for example, a query pulling every row from a ticketing system's issues table.
+  </Card>
+</Columns>
+
+## After Update SQL
+
+<Frame>
+  ![Screenshot 2026 07 15 At 17 17 08 1](/images/Screenshot-2026-07-15-at-17.17.08-1.png)
+</Frame>
+
+Once updated, a SQL dataset behaves the same as an activity dataset: hide or show columns, switch between **Table** and SQL view, add tabs to group or pre-filter, **Export**, and **Save**.
