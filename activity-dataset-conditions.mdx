@@ -1,0 +1,113 @@
+---
+title: "Conditions"
+description: "Refine a join with activity filters, column matching, relative activities, and time windows."
+---
+
+Once a join is in place, conditions narrow down which occurrences of the joined activity actually match. Four mechanisms are available, and they can be combined freely on the same join.
+
+<Columns cols={4}>
+  <Card title="Activity Filters" icon="filter">
+    Filter the joined activity's own columns.
+  </Card>
+
+  <Card title="Join" icon="link">
+    Match specific columns between the cohort and the joined activity.
+  </Card>
+
+  <Card title="Relative" icon="shuffle">
+    Condition against a separate named activity.
+  </Card>
+
+  <Card title="Relative Time" icon="clock">
+    Restrict the join to a time window.
+  </Card>
+</Columns>
+
+<Note>
+  Which conditions are available depends on the join you built. Not every option appears on every join type.
+</Note>
+
+---
+
+## Activity Filters
+
+Filters the joined activity's own columns before it's matched — for example, appending the last refunded payment, but only where the refund type is one of a specific set.
+
+This uses the same rule and group builder as cohort filters, applied to the joined activity instead of the cohort. Press **Rule** to add a single condition, or **Group** to nest a block of conditions.
+
+### Rules
+
+Each rule is a column, an operator, and a value.
+
+| Operator | Description |
+| --- | --- |
+| Equals | The column matches this value exactly. |
+| Not Equals | The column does not match this value. |
+| Contains | The column includes this text. |
+| Does Not Contain | The column does not include this text. |
+| Starts With | The column begins with this text. |
+| Does Not Start With | The column does not begin with this text. |
+| Ends With | The column ends with this text. |
+| Does Not End With | The column does not end with this text. |
+| Is In | The column matches any value in a list. |
+| Is Not In | The column matches none of the values in a list. |
+| Any Contains | The column contains any value from a list. |
+| None Contains | The column contains none of the values from a list. |
+| Is Null | The column has no value. |
+| Is Not Null | The column has a value. |
+| Is Empty | The column is an empty string. |
+| Is Not Empty | The column is not an empty string. |
+
+<Note>
+  Is In, Is Not In, Any Contains, and None Contains take an array of values rather than a single value.
+</Note>
+
+### Combining Rules
+
+Every **AND** joining two rules can be switched to **OR**, and **Group** adds a nested block of rules alongside the existing ones, letting you build arbitrarily complex logic.
+
+<Frame>
+  ![Screenshot 2026 07 27 At 16 45 54](/images/Screenshot-2026-07-27-at-16.45.54.png "Screenshot 2026 07 27 At 16 45 54")
+</Frame>
+
+---
+
+## Join
+
+Matches specific columns between the cohort activity and the joined activity, so the append only lands on rows that genuinely correspond to each other.
+
+Each join condition pairs a **cohort column** with a **current column** and an operator between them. Matching Product Paid's Transaction Id to Payment Refunded's Transaction Id with **Equal**, for example, ties each refund to the payment it actually belongs to rather than to any refund from the same customer.
+
+Conditions aren't limited to equality — greater than, less than, and other comparisons are available where the column types support them. Multiple conditions can be added to the same join.
+
+<Frame>
+  ![Screenshot 2026 07 27 At 16 46 54](/images/Screenshot-2026-07-27-at-16.46.54.png "Screenshot 2026 07 27 At 16 46 54")
+</Frame>
+
+---
+
+## Relative
+
+Conditions the join on its relationship to a separate named activity, rather than to the cohort row.
+
+Pick a **relative activity** and whether the join should fall **before** or **after** it. An **Include missing** toggle controls whether cohort rows with no matching relative activity are still kept.
+
+<Frame>
+  ![Screenshot 2026 07 27 At 16 47 26](/images/Screenshot-2026-07-27-at-16.47.26.png "Screenshot 2026 07 27 At 16 47 26")
+</Frame>
+
+---
+
+## Relative Time
+
+Restricts the relation to a time window.
+
+Set a quantity and a unit — minutes, hours, days, weeks, months, quarters, or years — along with whether the window is a **within** or an **at least** constraint. "Within 30 days after" and "at least 30 minutes after" are both valid, and mean very different things.
+
+<Frame>
+  ![Screenshot 2026 07 27 At 16 48 06](/images/Screenshot-2026-07-27-at-16.48.06.png "Screenshot 2026 07 27 At 16 48 06")
+</Frame>
+
+<Tip>
+  Relative time is what makes windowed metrics possible. A lifetime value dataset appending the same activity at 3, 6, and 12 month windows is four identical joins differing only in their relative time setting.
+</Tip>

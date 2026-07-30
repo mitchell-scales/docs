@@ -1,0 +1,175 @@
+---
+title: "Metric Card"
+description: "Display your most important numbers prominently, as a single figure or broken down by a dimension."
+---
+
+Metric cards display your most important numbers prominently.
+
+## Basic Metric Card Requirements
+
+You need edit access to the report and the correct user permissions to make changes. You also need to be in the report's edit mode — changes made outside edit mode won't save.
+
+### Adding a Metric Card
+
+Select **Metric Card** from the data elements panel on the right.
+
+<Frame>
+  ![Create A Plot](/images/Create-a-plot.png "Create A Plot")
+</Frame>
+
+### Adding Data
+
+Choose a **source type** — either **Models** or **Dataset**.
+
+<Columns cols={2}>
+  <Card title="Models" icon="sigma">
+    Select one or more metrics directly.
+  </Card>
+
+  <Card title="Dataset" icon="table">
+    Select a dataset and a tab, then add custom metrics and columns from it.
+  </Card>
+</Columns>
+
+<Frame>
+  ![Screenshot 2026 07 30 At 15 06 16](/images/Screenshot-2026-07-30-at-15.06.16.png "Screenshot 2026 07 30 At 15 06 16")
+</Frame>
+
+<Frame>
+  ![Screenshot 2026 07 30 At 15 06 33](/images/Screenshot-2026-07-30-at-15.06.33.png "Screenshot 2026 07 30 At 15 06 33")
+</Frame>
+
+### Card Style
+
+Pick your card style — **Big Numbers** or **Breakdown**.
+
+#### Big Numbers
+
+Displays multiple metrics as large figures side by side. A comparison is mandatory, shown as a percentage, a value, or a delta depending on how it's configured — see Comparison, below.
+
+<Frame>
+  <img
+    src="/images/Screenshot-2026-07-01-at-16.45.28.png"
+    alt="Screenshot 2026 07 01 At 16 45 28"
+    title="Screenshot 2026 07 01 At 16 45 28"
+    className="mx-auto"
+    style={{ width:"79%" }}
+  />
+</Frame>
+
+Select **Big Numbers** as the card style, then choose the metrics to display.
+
+<Frame>
+  ![Screenshot 2026 07 30 At 15 08 56](/images/Screenshot-2026-07-30-at-15.08.56.png "Screenshot 2026 07 30 At 15 08 56")
+</Frame>
+
+#### Breakdown
+
+Displays a single metric broken down by a dimension — for example, emails opened by campaign. Requires a dimension to be added, and a comparison is mandatory here too.
+
+<Note>
+  Adding a breakdown automatically limits it — shown as, for example, "Top 8 by value." This number can be changed.
+</Note>
+
+<Frame>
+  <img
+    src="/images/Screenshot-2026-07-01-at-16.46.45.png"
+    alt="Screenshot 2026 07 01 At 16 46 45"
+    title="Screenshot 2026 07 01 At 16 46 45"
+    className="mx-auto"
+    style={{ width:"79%" }}
+  />
+</Frame>
+
+Select **Breakdown** as the card style, then choose the metric and the dimension to break it down by.
+
+<Frame>
+  ![Screenshot 2026 07 30 At 15 09 28](/images/Screenshot-2026-07-30-at-15.09.28.png "Screenshot 2026 07 30 At 15 09 28")
+</Frame>
+
+---
+
+## Advanced Metric Card Properties
+
+### Data Range
+
+<Card title="Range" icon="calendar-range" horizontal>
+  Type a preset range in plain English — This Week, This Month, This Year, This Quarter, 12 Months, 2 Days, and so on — or switch to a **custom period** and pick two exact dates.
+</Card>
+
+<Note>
+  Unlike a plot, a metric card has no granularity setting — it shows a single point, not a series over time.
+</Note>
+
+<Frame>
+  ![Screenshot 2026 07 30 At 15 21 33](/images/Screenshot-2026-07-30-at-15.21.33.png "Screenshot 2026 07 30 At 15 21 33")
+</Frame>
+
+### Filtering
+
+Filters work the same way as [dataset filters](/activity-dataset-config) — pick a dimension (only dimensions attached to the metrics on this card are shown), set an operator, and a value.
+
+<Columns cols={2}>
+  <Column>
+    - **Equals** — the dimension matches this value exactly.
+    - **Not Equals** — the dimension does not match this value.
+    - **Contains** — the dimension includes this text.
+    - **Does Not Contain** — the dimension does not include this text.
+    - **Starts With** — the dimension begins with this text.
+    - **Does Not Start With** — the dimension does not begin with this text.
+    - **Ends With** — the dimension ends with this text.
+    - **Does Not End With** — the dimension does not end with this text.
+  </Column>
+  <Column>
+    - **Is In** — the dimension matches any value in a list.
+    - **Is Not In** — the dimension matches none of the values in a list.
+    - **Any Contains** — the dimension contains any value from a list.
+    - **None Contains** — the dimension contains none of the values from a list.
+    - **Is Null** — the dimension has no value.
+    - **Is Not Null** — the dimension has a value.
+    - **Is Empty** — the dimension is an empty string.
+    - **Is Not Empty** — the dimension is not an empty string.
+  </Column>
+</Columns>
+
+Press the **\+** next to Filter to add one. **Add Rule** adds a single condition, **Add Group** nests a block of conditions.
+
+**Allow Report Setting** works the same way here as elsewhere, with two explicit options:
+
+<Columns cols={2}>
+  <Card title="Enable by default" icon="toggle-on" horizontal>
+    Report-level filters supersede this card's own filters.
+  </Card>
+
+  <Card title="Disabled" icon="toggle-off" horizontal>
+    The card stays filtered exactly as set up here, and does not respond to report filters.
+  </Card>
+</Columns>
+
+<Frame>
+  ![Screenshot 2026 07 30 At 12 54 26](/images/Screenshot-2026-07-30-at-12.54.26.png "Screenshot 2026 07 30 At 12 54 26")
+</Frame>
+
+### Comparison
+
+A comparison is mandatory on every metric card. Switch between **Previous Range** and **Previous Year**.
+
+<Frame>
+  ![Screenshot 2026 07 30 At 15 22 03](/images/Screenshot-2026-07-30-at-15.22.03.png "Screenshot 2026 07 30 At 15 22 03")
+</Frame>
+
+Press **Config All** to control how that comparison displays, for both Big Numbers and Breakdown cards.
+
+<Columns cols={1}>
+  <Card title="Comparison View" icon="percent" horizontal>
+    Choose how the comparison displays — as a **Percentage**, a **Value**, or a **Delta**.
+  </Card>
+
+  <Card title="Higher Is Better" icon="arrow-up" horizontal>
+    Controls how a comparison's color is read. Toggled on, an increase displays as a positive change — suited to metrics like profit. Toggled off, an increase displays as negative instead — suited to metrics like accident count, where more is worse.
+  </Card>
+</Columns>
+
+<Frame>
+  ![Screenshot 2026 07 30 At 15 20 16](/images/Screenshot-2026-07-30-at-15.20.16.png "Screenshot 2026 07 30 At 15 20 16")
+</Frame>

@@ -1,0 +1,48 @@
+---
+title: "AI Insight"
+description: "Generate structured, AI-written analysis from the data already in your report."
+---
+
+AI Insight elements generate structured, AI-written analysis from the data already in your report.
+
+## Basic AI Insight Requirements
+
+You need edit access to the report and the correct user permissions to make changes. You also need to be in the report's edit mode — changes made outside edit mode won't save.
+
+### Adding an AI Insight
+
+Select **AI Insight** from the data elements panel on the right.
+
+<Frame>
+  ![Create A Plot](/images/Create-a-plot.png "Create A Plot")
+</Frame>
+
+---
+
+## Section Types
+
+You build an insight by adding sections — each with a different output format and its own prompt.
+
+<Columns cols={4}>
+  <Card title="Takeaway" icon="lightbulb">
+    A concise summary of the single most important finding.
+  </Card>
+
+  <Card title="Cards" icon="square">
+    Recommended actions, each presented as an individual card.
+  </Card>
+
+  <Card title="Bullets" icon="list">
+    Key points surfaced as a scannable bulleted list.
+  </Card>
+
+  <Card title="Examples" icon="lightbulb-exclamation">
+    Specific data points or rows that illustrate the finding.
+  </Card>
+</Columns>
+
+For each section you write a prompt directing what the AI should produce. You then select one or more **sources** from the elements already in the report — any metric card, plot, or table — which the AI reads from to generate its output.
+
+<Frame>
+  ![Screenshot 2026 07 30 At 15 14 48](/images/Screenshot-2026-07-30-at-15.14.48.png "Screenshot 2026 07 30 At 15 14 48")
+</Frame>

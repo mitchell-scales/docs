@@ -1,0 +1,44 @@
+---
+title: "Formatting"
+description: "Lay out a report with sections, text, dividers, and width controls."
+---
+
+You can add elements by clicking them in the right panel — they'll appear at the bottom of the report — or by dragging and dropping them into position. Every element has a **six-dot handle** in its top-left corner for reordering. Elements can also be placed side by side to create multi-column layouts.
+
+<Columns cols={2}>
+  <Card title="Full Width" icon="arrows-left-right">
+    Stretches the report canvas edge to edge. Best for wide tables and dense dashboards.
+  </Card>
+
+  <Card title="Page Width" icon="arrows-left-right-to-line">
+    Constrains the report to a readable page width. Better for narrative-led reports.
+  </Card>
+</Columns>
+
+---
+
+## UI Elements
+
+UI elements control the structure and layout of your report.
+
+<Columns cols={2}>
+  <Card title="Section" icon="h1">
+    Breaks the report into named chapters with their own title, description, filters, and time overrides. Sections appear in the navigation sidebar.
+  </Card>
+
+  <Card title="Text" icon="text">
+    Adds a block of text formatted as body, heading, bulleted list, or numbered list.
+  </Card>
+
+  <Card title="Divider" icon="minus">
+    Adds a horizontal line to create a visual break in the flow of the report.
+  </Card>
+
+  <Card title="Action" icon="play">
+    Embeds a [workflow](/workflows) action so readers can provide inputs and trigger a workflow directly from the report.
+  </Card>
+</Columns>
+
+### Sections in Detail
+
+Beyond a title and description, each section can independently override the report-level date range and granularity — so one section can show year-to-date data while another shows a rolling 30 days. You can also attach filters scoped only to that section, for example locking it to a specific product or campaign. Sections always appear in the navigation sidebar, letting readers jump directly to the part they need.

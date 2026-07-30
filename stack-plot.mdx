@@ -1,0 +1,191 @@
+---
+title: "Stack Plot"
+description: "Add a stack plot to a report to show how metrics combine into a total across time."
+---
+
+A stack plot renders each metric stacked on top of the others per time period, rather than placed side by side, making the combined total as visible as the individual contributions.
+
+<Frame>
+  ![Stack plot](/images/Screenshot-2026-07-02-at-14.35.09.png)
+</Frame>
+
+<Tip>
+  **Example use cases:** showing total revenue broken into product lines each month, or total support tickets broken into categories each week.
+</Tip>
+
+## Basic Stack Chart Requirements
+
+You need edit access to the report and the correct user permissions to make changes. You also need to be in the report's edit mode — changes made outside edit mode won't save.
+
+### Adding a Stack Plot
+
+Select **Plot** from the data elements panel on the right.
+
+<Frame>
+  ![Create A Plot](/images/Create-a-plot.png "Create A Plot")
+</Frame>
+
+Then choose **Stack** as the plot type.
+
+<Frame>
+  ![Screenshot 2026 07 30 At 13 43 15](/images/Screenshot-2026-07-30-at-13.43.15.png "Screenshot 2026 07 30 At 13 43 15")
+</Frame>
+
+### Adding Data
+
+Choose a **source type** — either **Models** or **Dataset**.
+
+<Columns cols={2}>
+  <Card title="Models" icon="sigma">
+    Select one or more metrics directly.
+  </Card>
+
+  <Card title="Dataset" icon="table">
+    Select a dataset and a tab, then add custom metrics and columns from it.
+  </Card>
+</Columns>
+
+<Frame>
+  ![Screenshot 2026 07 30 At 12 50 18](/images/Screenshot-2026-07-30-at-12.50.18.png "Screenshot 2026 07 30 At 12 50 18")
+</Frame>
+
+<Frame>
+  ![Screenshot 2026 07 30 At 12 49 42](/images/Screenshot-2026-07-30-at-12.49.42.png "Screenshot 2026 07 30 At 12 49 42")
+</Frame>
+
+### Data Range
+
+<Columns cols={2}>
+  <Card title="Range" icon="calendar-range">
+    Type a preset range in plain English — This Week, This Month, This Year, This Quarter, 12 Months, 2 Days, and so on — or switch to a **custom period** and pick two exact dates.
+  </Card>
+
+  <Card title="Granularity" icon="clock">
+    Pick Day, Week, Month, Quarter, or Year.
+  </Card>
+</Columns>
+
+Both Range and Granularity have an **Allow Report Setting** toggle, enabled by default — when enabled, the report-level value takes precedence; when disabled, the plot uses its own setting regardless of the report.
+
+<Frame>
+  ![Screenshot 2026 07 30 At 12 51 14](/images/Screenshot-2026-07-30-at-12.51.14.png "Screenshot 2026 07 30 At 12 51 14")
+</Frame>
+
+---
+
+## Modes
+
+<Columns cols={2}>
+  <Card title="Over Time" icon="chart-line">
+    Plots each metric across the selected date range at your chosen granularity. This is the default mode.
+  </Card>
+
+  <Card title="Cumulative" icon="chart-pie">
+    Requires a breakdown. Rather than plotting across time, shows the breakdown's values cumulatively across the whole data period.
+  </Card>
+</Columns>
+
+---
+
+## Advanced Stack Chart Properties
+
+### Breakdowns
+
+Press the **\+** next to Breakdown to see every dimension linked to the metrics you've selected. Clicking a dimension adds it as a breakdown — on a Stack plot, breakdown values are stacked into a single bar per time period, representing the total.
+
+Once a breakdown is added, press **Configure** on the metric to open its settings:
+
+<Columns cols={3}>
+  <Card title="Limit Legend" icon="list-ol">
+    Show the top N or bottom N values by number, rather than every value in the breakdown.
+  </Card>
+
+  <Card title="Hide Other" icon="eye-slash">
+    Hides the "Other" category that appears when values outside your top N sum to more than any individual top N value.
+  </Card>
+
+  <Card title="Ranking Basis" icon="ranking-star">
+    What the ranking is based on — Total (the default), Average, Current Month, or Last Month.
+  </Card>
+</Columns>
+
+<Frame>
+  ![Screenshot 2026 07 30 At 12 52 40](/images/Screenshot-2026-07-30-at-12.52.40.png "Screenshot 2026 07 30 At 12 52 40")
+</Frame>
+
+### Filtering
+
+Plot filters work the same way as [dataset filters](/activity-dataset-config) — pick a dimension (only dimensions attached to the metrics in this plot are shown), set an operator, and a value.
+
+<Columns cols={2}>
+  <Column>
+    - **Equals** — the dimension matches this value exactly.
+    - **Not Equals** — the dimension does not match this value.
+    - **Contains** — the dimension includes this text.
+    - **Does Not Contain** — the dimension does not include this text.
+    - **Starts With** — the dimension begins with this text.
+    - **Does Not Start With** — the dimension does not begin with this text.
+    - **Ends With** — the dimension ends with this text.
+    - **Does Not End With** — the dimension does not end with this text.
+  </Column>
+  <Column>
+    - **Is In** — the dimension matches any value in a list.
+    - **Is Not In** — the dimension matches none of the values in a list.
+    - **Any Contains** — the dimension contains any value from a list.
+    - **None Contains** — the dimension contains none of the values from a list.
+    - **Is Null** — the dimension has no value.
+    - **Is Not Null** — the dimension has a value.
+    - **Is Empty** — the dimension is an empty string.
+    - **Is Not Empty** — the dimension is not an empty string.
+  </Column>
+</Columns>
+
+Press the **\+** next to Filter to add one. **Add Rule** adds a single condition, **Add Group** nests a block of conditions.
+
+**Allow Report Setting** works the same way here as elsewhere, with two explicit options:
+
+<Columns cols={2}>
+  <Card title="Enable by default" icon="toggle-on">
+    Report-level filters supersede this plot's own filters.
+  </Card>
+
+  <Card title="Disabled" icon="toggle-off">
+    The plot stays filtered exactly as set up here, and does not respond to report filters.
+  </Card>
+</Columns>
+
+<Frame>
+  ![Screenshot 2026 07 30 At 12 54 26](/images/Screenshot-2026-07-30-at-12.54.26.png "Screenshot 2026 07 30 At 12 54 26")
+</Frame>
+
+### Compare
+
+Add a comparison by switching from **No Comparison** (the default) to **Previous Range** or **Previous Year**.
+
+### Configure
+
+<Columns cols={1}>
+  <Card title="Orientation" icon="arrows-left-right" horizontal>
+    Switches the plot between vertical (default) and horizontal bars.
+  </Card>
+
+  <Card title="Hide Legend" icon="eye-slash" horizontal>
+    Toggles whether the legend displays.
+  </Card>
+
+  <Card title="Show Values" icon="tag" horizontal>
+    Displays the value directly on the plot.
+  </Card>
+</Columns>
+
+### Annotations
+
+Toggle **Company Events** or **Activity Events** to layer them onto the plot, or add a **Custom Annotation** of your own.
+
+### Legend: Color and Label
+
+Click an item in the legend to open a color picker and a label rename box, letting you recolor or relabel that series without changing the underlying data.
+
+<Frame>
+  ![Screenshot 2026 07 30 At 13 46 25](/images/Screenshot-2026-07-30-at-13.46.25.png "Screenshot 2026 07 30 At 13 46 25")
+</Frame>
