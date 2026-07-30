@@ -34,8 +34,6 @@
               "intro-to-reports",
               "working-in-reports",
               "formatting",
-              "metric-card",
-              "ai-insight",
               {
                 "group": "Building Plots",
                 "icon": "chart-line",
@@ -47,6 +45,7 @@
                   "scatter-plot"
                 ]
               },
+              "metric-card",
               {
                 "group": "Building Tables",
                 "icon": "table",
@@ -54,7 +53,8 @@
                   "data-table",
                   "pivot-table"
                 ]
-              }
+              },
+              "ai-insight"
             ],
             "icon": "chart-line"
           },
