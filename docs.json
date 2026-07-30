@@ -35,28 +35,28 @@
               "working-in-reports",
               "formatting",
               "metric-card",
-              "ai-insight"
+              "ai-insight",
+              {
+                "group": "Building Plots",
+                "icon": "chart-line",
+                "pages": [
+                  "line-plot",
+                  "bar-plot",
+                  "stack-plot",
+                  "pie-plot",
+                  "scatter-plot"
+                ]
+              },
+              {
+                "group": "Building Tables",
+                "icon": "table",
+                "pages": [
+                  "data-table",
+                  "pivot-table"
+                ]
+              }
             ],
             "icon": "chart-line"
-          },
-          {
-            "group": "Building Plots",
-            "icon": "chart-line",
-            "pages": [
-              "line-plot",
-              "bar-plot",
-              "stack-plot",
-              "pie-plot",
-              "scatter-plot"
-            ]
-          },
-          {
-            "group": "Building Tables",
-            "icon": "table",
-            "pages": [
-              "data-table",
-              "pivot-table"
-            ]
           },
           {
             "group": "Datasets",
@@ -65,6 +65,10 @@
               "activity-datasets",
               "sql-datasets",
               "time-datasets",
+              {
+                "group": "Untitled Group",
+                "pages": []
+              },
               {
                 "group": "Activity Dataset Setup",
                 "icon": "bolt",
