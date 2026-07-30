@@ -1,0 +1,366 @@
+---
+title: "Joins"
+description: "Append related activities onto the cohort using temporal joins, and pull in the columns you need."
+---
+
+A temporal join appends columns from another activity onto the cohort. It pairs activities by customer and time rather than a foreign key, so any activity can be joined to any other without modelling the relationship in advance.
+
+Press **Add another append source** to add a join.
+
+<Note>
+  Temporal joins only add columns. They never duplicate or drop rows from the cohort.
+</Note>
+
+## Building a Join
+
+A join isn't picked from a fixed list — you build it by combining a **position** with a **relation**.
+
+### Position
+
+<Columns cols={4}>
+  <Card title="First" icon="arrow-down-1-9">
+    The first matching occurrence.
+  </Card>
+
+  <Card title="Last" icon="arrow-up-1-9">
+    The last matching occurrence.
+  </Card>
+
+  <Card title="Aggregation" icon="function">
+    An aggregation across every matching occurrence.
+  </Card>
+
+  <Card title="All" icon="asterisk">
+    An advanced option that appends every matching occurrence rather than a single row or aggregation.
+  </Card>
+</Columns>
+
+### Relation
+
+<Columns cols={3}>
+  <Card title="Ever" icon="infinity">
+    Regardless of when it happened relative to the cohort row.
+  </Card>
+
+  <Card title="Before" icon="backward">
+    Strictly before the cohort row.
+  </Card>
+
+  <Card title="Before Or On" icon="backward">
+    Before or at the same timestamp as the cohort row.
+  </Card>
+
+  <Card title="After" icon="forward">
+    Strictly after the cohort row.
+  </Card>
+
+  <Card title="After Or On" icon="forward">
+    After or at the same timestamp as the cohort row.
+  </Card>
+
+  <Card title="In Between" icon="arrows-left-right">
+    Between the cohort row and the cohort's next occurrence.
+  </Card>
+</Columns>
+
+Position and relation combine to form the join. **First** \+ **Ever** appends the first time the activity ever happened. **Aggregation** \+ **After Or On** aggregates every occurrence from the cohort row onward.
+
+<Frame>
+  ![Screenshot 2026 07 27 At 16 36 35](/images/Screenshot-2026-07-27-at-16.36.35.png "Screenshot 2026 07 27 At 16 36 35")
+</Frame>
+
+## Pulling in Columns
+
+Use **Add columns from** on a join to choose which columns to bring across. Columns can come from two places:
+
+<Columns cols={2}>
+  <Card title="The joined activity" icon="bolt">
+    Any column on the activity itself, including its features.
+  </Card>
+
+  <Card title="An attribute table" icon="table-cells">
+    Any column from an attribute table joined onto that activity — for example, pulling campaign name from a campaign table keyed on the activity's campaign ID.
+  </Card>
+</Columns>
+
+Pulled-in columns can be renamed, which is worth doing whenever the default name won't read clearly in the finished dataset.
+
+<Frame>
+  ![Screenshot 2026 07 27 At 16 42 28](/images/Screenshot-2026-07-27-at-16.42.28.png "Screenshot 2026 07 27 At 16 42 28")
+</Frame>
+
+### Choosing Columns on an Aggregation Join
+
+On an **Aggregation** join, every column you add gets its own aggregate function, chosen independently — there's no single aggregate type for the whole join.
+
+<Columns cols={4}>
+  <Card title="Count" icon="hashtag">
+    Number of matching rows.
+  </Card>
+
+  <Card title="Count Distinct" icon="hashtag">
+    Number of unique values.
+  </Card>
+
+  <Card title="Sum" icon="plus">
+    Total across matching rows.
+  </Card>
+
+  <Card title="Average" icon="divide">
+    Mean across matching rows.
+  </Card>
+
+  <Card title="Min" icon="arrow-down">
+    Smallest value.
+  </Card>
+
+  <Card title="Max" icon="arrow-up">
+    Largest value.
+  </Card>
+
+  <Card title="Median" icon="chart-simple">
+    Middle value.
+  </Card>
+
+  <Card title="Standard Deviation" icon="chart-line">
+    Spread of values around the mean.
+  </Card>
+</Columns>
+
+For example, aggregating all Product Purchased activity within 30 days after the cohort row might pull in a **Count** of Activity Id (how many purchases), a **Sum** of Revenue, and a **Sum** of Quantity — three columns on the same join, each with its own aggregate function.
+
+## Renaming the Activity Label
+
+A join's activity label can also be renamed, which matters when you append the same activity several times over.
+
+Building a lifetime value dataset, for example, might mean appending **Product Purchased** once per window — 3 month, 6 month, 9 month, 12 month, 24 month, 36 month. Left alone, all six appends show up as "Product Purchased" and become impossible to tell apart. Renaming them to **3 Month Products**, **6 Month Products**, and so on makes the dataset readable.
+
+<Frame>
+  ![Screenshot 2026 07 27 At 16 43 09](/images/Screenshot-2026-07-27-at-16.43.09.png "Screenshot 2026 07 27 At 16 43 09")
+</Frame>
+
+---
+
+## How Joins Compile to SQL
+
+<Warning>
+  This section may be removed. Keeping it at the bottom of the page for now while that's decided.
+</Warning>
+
+Every join compiles down to a scoped query that matches the joined activity back onto the cohort by customer and time. The exact shape of that query — which comparison operator is used on the timestamp, and whether the result collapses to one row or an aggregate — depends on which position and relation you picked. Expand any combination below for the compiled shape it produces.
+
+<Note>
+  The SQL below is illustrative placeholder text, not the literal compiled output — useful for understanding the shape, not for copying verbatim.
+</Note>
+
+<AccordionGroup>
+  <Accordion title="First Ever">
+    ```sql
+    SELECT customer, ANY_VALUE(column) AS value
+    FROM joined_activity
+    QUALIFY ROW_NUMBER() OVER (PARTITION BY customer ORDER BY ts ASC) = 1
+    ```
+  </Accordion>
+
+  <Accordion title="First Before">
+    ```sql
+    SELECT customer, ANY_VALUE(column) AS value
+    FROM joined_activity
+    WHERE ts < cohort.join_ts
+    QUALIFY ROW_NUMBER() OVER (PARTITION BY customer ORDER BY ts ASC) = 1
+    ```
+  </Accordion>
+
+  <Accordion title="First Before Or On">
+    ```sql
+    SELECT customer, ANY_VALUE(column) AS value
+    FROM joined_activity
+    WHERE ts <= cohort.join_ts
+    QUALIFY ROW_NUMBER() OVER (PARTITION BY customer ORDER BY ts ASC) = 1
+    ```
+  </Accordion>
+
+  <Accordion title="First After">
+    ```sql
+    SELECT customer, ANY_VALUE(column) AS value
+    FROM joined_activity
+    WHERE ts > cohort.join_ts
+    QUALIFY ROW_NUMBER() OVER (PARTITION BY customer ORDER BY ts ASC) = 1
+    ```
+  </Accordion>
+
+  <Accordion title="First After Or On">
+    ```sql
+    SELECT customer, ANY_VALUE(column) AS value
+    FROM joined_activity
+    WHERE ts >= cohort.join_ts
+    QUALIFY ROW_NUMBER() OVER (PARTITION BY customer ORDER BY ts ASC) = 1
+    ```
+  </Accordion>
+
+  <Accordion title="First In Between">
+    ```sql
+    SELECT customer, ANY_VALUE(column) AS value
+    FROM joined_activity
+    WHERE ts >= cohort.join_ts AND ts < cohort.next_ts
+    QUALIFY ROW_NUMBER() OVER (PARTITION BY customer ORDER BY ts ASC) = 1
+    ```
+  </Accordion>
+
+  <Accordion title="Last Ever">
+    ```sql
+    SELECT customer, ANY_VALUE(column) AS value
+    FROM joined_activity
+    QUALIFY ROW_NUMBER() OVER (PARTITION BY customer ORDER BY ts DESC) = 1
+    ```
+  </Accordion>
+
+  <Accordion title="Last Before">
+    ```sql
+    SELECT customer, ANY_VALUE(column) AS value
+    FROM joined_activity
+    WHERE ts < cohort.join_ts
+    QUALIFY ROW_NUMBER() OVER (PARTITION BY customer ORDER BY ts DESC) = 1
+    ```
+  </Accordion>
+
+  <Accordion title="Last Before Or On">
+    ```sql
+    SELECT customer, ANY_VALUE(column) AS value
+    FROM joined_activity
+    WHERE ts <= cohort.join_ts
+    QUALIFY ROW_NUMBER() OVER (PARTITION BY customer ORDER BY ts DESC) = 1
+    ```
+  </Accordion>
+
+  <Accordion title="Last After">
+    ```sql
+    SELECT customer, ANY_VALUE(column) AS value
+    FROM joined_activity
+    WHERE ts > cohort.join_ts
+    QUALIFY ROW_NUMBER() OVER (PARTITION BY customer ORDER BY ts DESC) = 1
+    ```
+  </Accordion>
+
+  <Accordion title="Last After Or On">
+    ```sql
+    SELECT customer, ANY_VALUE(column) AS value
+    FROM joined_activity
+    WHERE ts >= cohort.join_ts
+    QUALIFY ROW_NUMBER() OVER (PARTITION BY customer ORDER BY ts DESC) = 1
+    ```
+  </Accordion>
+
+  <Accordion title="Last In Between">
+    ```sql
+    SELECT customer, ANY_VALUE(column) AS value
+    FROM joined_activity
+    WHERE ts >= cohort.join_ts AND ts < cohort.next_ts
+    QUALIFY ROW_NUMBER() OVER (PARTITION BY customer ORDER BY ts DESC) = 1
+    ```
+  </Accordion>
+
+  <Accordion title="Aggregate Ever">
+    ```sql
+    SELECT customer, SUM(column) AS value
+    FROM joined_activity
+    GROUP BY customer
+    ```
+  </Accordion>
+
+  <Accordion title="Aggregate Before">
+    ```sql
+    SELECT customer, SUM(column) AS value
+    FROM joined_activity
+    WHERE ts < cohort.join_ts
+    GROUP BY customer
+    ```
+  </Accordion>
+
+  <Accordion title="Aggregate Before Or On">
+    ```sql
+    SELECT customer, SUM(column) AS value
+    FROM joined_activity
+    WHERE ts <= cohort.join_ts
+    GROUP BY customer
+    ```
+  </Accordion>
+
+  <Accordion title="Aggregate After">
+    ```sql
+    SELECT customer, SUM(column) AS value
+    FROM joined_activity
+    WHERE ts > cohort.join_ts
+    GROUP BY customer
+    ```
+  </Accordion>
+
+  <Accordion title="Aggregate After Or On">
+    ```sql
+    SELECT customer, SUM(column) AS value
+    FROM joined_activity
+    WHERE ts >= cohort.join_ts
+    GROUP BY customer
+    ```
+  </Accordion>
+
+  <Accordion title="Aggregate In Between">
+    ```sql
+    SELECT customer, SUM(column) AS value
+    FROM joined_activity
+    WHERE ts >= cohort.join_ts AND ts < cohort.next_ts
+    GROUP BY customer
+    ```
+  </Accordion>
+
+  <Accordion title="All Ever">
+    ```sql
+    SELECT customer, ts, column
+    FROM joined_activity
+    ```
+  </Accordion>
+
+  <Accordion title="All Before">
+    ```sql
+    SELECT customer, ts, column
+    FROM joined_activity
+    WHERE ts < cohort.join_ts
+    ```
+  </Accordion>
+
+  <Accordion title="All Before Or On">
+    ```sql
+    SELECT customer, ts, column
+    FROM joined_activity
+    WHERE ts <= cohort.join_ts
+    ```
+  </Accordion>
+
+  <Accordion title="All After">
+    ```sql
+    SELECT customer, ts, column
+    FROM joined_activity
+    WHERE ts > cohort.join_ts
+    ```
+  </Accordion>
+
+  <Accordion title="All After Or On">
+    ```sql
+    SELECT customer, ts, column
+    FROM joined_activity
+    WHERE ts >= cohort.join_ts
+    ```
+  </Accordion>
+
+  <Accordion title="All In Between">
+    ```sql
+    SELECT customer, ts, column
+    FROM joined_activity
+    WHERE ts >= cohort.join_ts AND ts < cohort.next_ts
+    ```
+  </Accordion>
+</AccordionGroup>
+
+<Tip>
+  You can inspect the actual compiled SQL for any dataset at any time by switching from table view to SQL view.
+</Tip>

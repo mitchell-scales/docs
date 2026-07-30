@@ -1,0 +1,58 @@
+---
+title: "Definition"
+description: "Build a time-grain cohort and append activities onto it."
+---
+
+A time dataset's cohort is a date grid, not an activity — one row is generated per period rather than per event. Everything downstream (joins, conditions) works the same as an [Activity Dataset](/activity-dataset-config), but the starting cohort is built differently.
+
+## Stream
+
+Pick the stream the time cohort belongs to.
+
+## Time Cohort
+
+A time cohort is built from a mode, a granularity, and a range.
+
+### Mode
+
+<Columns cols={3}>
+  <Card title="All Start" icon="forward-step">
+    Builds one row per period start.
+  </Card>
+
+  <Card title="All End" icon="forward-step">
+    Builds one row per period end.
+  </Card>
+
+  <Card title="This" icon="calendar-day">
+    Uses the current period only.
+  </Card>
+
+  <Card title="Last" icon="calendar-minus">
+    Uses the previous period only.
+  </Card>
+
+  <Card title="Date" icon="calendar">
+    Uses a specific date.
+  </Card>
+</Columns>
+
+### Granularity
+
+Set the period size — Day, Week, Month, and so on — that the mode above operates on.
+
+### Range
+
+Set a relative **From** and **To** range, for example "5 years ago" to "in 8 months."
+
+<Frame>
+  ![Screenshot placeholder — time cohort mode, granularity, and range](/images/TODO-time-cohort.png)
+</Frame>
+
+<Note>
+  A time dataset's cohort has no cohort-level rule/group filter builder, unlike an Activity Dataset's Config page — there's nothing to filter at this level since the cohort is just dates. Any filtering happens downstream, through Activity Filters on a joined activity instead.
+</Note>
+
+## Appending Activities
+
+Once the time cohort is defined, activities are appended onto it exactly the same way as an Activity Dataset — see [Joins](/time-dataset-joins) and [Conditions](/time-dataset-conditions).

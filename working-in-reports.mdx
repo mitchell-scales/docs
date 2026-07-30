@@ -1,0 +1,105 @@
+---
+title: "Working in Reports"
+description: "Staging and publishing changes, managing permissions, and the controls available on every element."
+---
+
+## Report Toolbar
+
+At the top of an open report, a toolbar gives you the main actions for that report.
+
+<Frame>
+  ![Screenshot 2026 07 30 At 14 45 26](/images/Screenshot-2026-07-30-at-14.45.26.png "Screenshot 2026 07 30 At 14 45 26")
+</Frame>
+
+<Columns cols={1}>
+  <Card title="Edit" icon="pencil" horizontal>
+    Enters edit mode, where the report can be changed.
+  </Card>
+
+  <Card title="Share" icon="arrow-up-from-bracket" horizontal>
+    Opens the sharing panel to add a team or copy a link. See Permissions, below.
+  </Card>
+
+  <Card title="Options menu (⋮)" icon="ellipsis-vertical" horizontal>
+    Opens further actions — see below.
+  </Card>
+</Columns>
+
+The options menu (⋮) covers:
+
+- **View Lineage** — see what powers the report and what it feeds into.
+- **Manage Embeds** — control where the report is embedded elsewhere.
+- **View History** — see past versions of the report.
+- **Copy Markdown** — copies the report's content as markdown.
+- **Download PDF** — exports the report as a PDF.
+- **Duplicate** — duplicates the report.
+- **Delete** — deletes the report.
+
+---
+
+## Staging and Publishing
+
+Saving a report follows a staged-then-published model, keeping your live report untouched while you keep working.
+
+<Steps>
+  <Step title="Save for the first time">
+    Creates the **production version** — what your team sees when they open the report.
+  </Step>
+  <Step title="Save again">
+    Every save after that updates a separate **staged version** instead, leaving production untouched. Keep editing and saving as needed.
+  </Step>
+  <Step title="View Report">
+    Opens the staged report screen, distinct from the edit screen.
+  </Step>
+  <Step title="Push to Production">
+    Replaces the live report with your staged content.
+  </Step>
+</Steps>
+
+---
+
+## Permissions
+
+Reports default to **Private** when created. Getting access to one works in two ways.
+
+### Sharing
+
+<Columns cols={2}>
+  <Card title="From the Reports index" icon="ellipsis-vertical">
+    Press the three-dot menu on a report's row and choose **Share**.
+  </Card>
+
+  <Card title="From inside the report" icon="arrow-up-from-bracket">
+    Press **Share** in the toolbar at the top, next to **Edit**.
+  </Card>
+</Columns>
+
+Both open the same panel, where you can **add a team** or **copy the link**.
+
+<Note>
+  Every workspace has a built-in **Everyone** team. Sharing with Everyone makes the report visible to every member of Polyform on that site.
+</Note>
+
+### Access Level
+
+A user's access level, set in Settings, can also grant visibility into reports beyond what's been explicitly shared with them — some access types can see other users' reports regardless of sharing.
+
+---
+
+## Element Controls
+
+These are available on every data element across the report.
+
+<Columns cols={1}>
+  <Card title="Configure" icon="sliders-h" horizontal>
+    Opens per-element settings — colours, data labels, company milestones, and for tables, sort order and other display options. For plots, this also includes hiding the legend, showing values directly on the plot, and displaying it as a delta.
+  </Card>
+
+  <Card title="Information" icon="ellipsis-stroke-vertical" horizontal>
+    Shows when the data was last processed, how long the query took, the sources, the metrics used, and the underlying activities the element is built on. From here you can also **download to CSV** or **send directly to a Google Sheet**.
+  </Card>
+</Columns>
+
+<Tip>
+  The robot icon in the top ribbon opens a new [agent](/agents) pre-filled with the context of the page you're on. Use it to ask questions about the report or dig into the data without leaving the page.
+</Tip>

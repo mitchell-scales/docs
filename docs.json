@@ -31,10 +31,32 @@
           {
             "group": "Reports",
             "pages": [
-              "reports-index",
-              "making-a-report"
+              "intro-to-reports",
+              "working-in-reports",
+              "formatting",
+              "metric-card",
+              "ai-insight"
             ],
             "icon": "chart-line"
+          },
+          {
+            "group": "Building Plots",
+            "icon": "chart-line",
+            "pages": [
+              "line-plot",
+              "bar-plot",
+              "stack-plot",
+              "pie-plot",
+              "scatter-plot"
+            ]
+          },
+          {
+            "group": "Building Tables",
+            "icon": "table",
+            "pages": [
+              "data-table",
+              "pivot-table"
+            ]
           },
           {
             "group": "Datasets",
@@ -42,7 +64,36 @@
               "datasets",
               "activity-datasets",
               "sql-datasets",
-              "time-datasets"
+              "time-datasets",
+              {
+                "group": "Activity Dataset Setup",
+                "icon": "bolt",
+                "pages": [
+                  "activity-dataset-config",
+                  "activity-dataset-joins",
+                  "activity-dataset-conditions"
+                ]
+              },
+              {
+                "group": "SQL Dataset Setup",
+                "icon": "code",
+                "pages": [
+                  "sql-dataset-editor",
+                  "sql-dataset-environment"
+                ]
+              },
+              {
+                "group": "Time Dataset Setup",
+                "icon": "calendar",
+                "pages": [
+                  "time-dataset-definition"
+                ]
+              },
+              {
+                "group": "Using a Dataset",
+                "icon": "wrench",
+                "pages": []
+              }
             ],
             "icon": "table"
           },

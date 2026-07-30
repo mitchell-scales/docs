@@ -1,0 +1,44 @@
+---
+title: "Editor"
+description: "Write and run a custom SELECT, with built-in functions available through the $ menu."
+---
+
+The editor is a plain SQL editor with one addition worth knowing about: a built-in function menu triggered by typing `$`.
+
+## Writing a Query
+
+Write a custom SELECT against any table available in the [Environment](/sql-dataset-environment). Press **Run** to preview the result.
+
+| Control | Description |
+| --- | --- |
+| **Allow Writes** | Permits the query to write to the warehouse, rather than just reading. |
+| **Format** | Formats the SQL. |
+| **Copy SQL** | Copies the query. |
+| **Update SQL** | Saves the query and generates the dataset. |
+| **Cancel** | Discards changes and exits the SQL editor. |
+
+<Frame>
+  ![Screenshot placeholder — SQL editor toolbar](/images/TODO-editor-toolbar.png)
+</Frame>
+
+## The \$ Function Menu
+
+Typing `$` opens a searchable list of built-in functions. Each one shows its name alongside the SQL it expands to, so you can see exactly what it does before using it.
+
+For example:
+
+| Function | Expands to |
+| --- | --- |
+| `$ABS` | `ABS(column)` |
+| `$Average` | `AVG(1.0000*column)` |
+| `$average_window` | `AVG(1.000*column) over (PARTITION by group)` |
+| `$average_window_before` | `AVG(1.0000*column) over (PARTITION by group ORDER BY ...)` |
+| `$at_timezone` | `TIMESTAMP(DATETIME(SAFE_CAST(column AS TIMESTAMP), "timezone"))` |
+
+<Frame>
+  ![Screenshot placeholder — \$ function menu](/images/TODO-editor-dollar-functions.png)
+</Frame>
+
+<Tip>
+  These are shortcuts, not requirements — you can always write the underlying SQL by hand instead.
+</Tip>

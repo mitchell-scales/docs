@@ -1,0 +1,92 @@
+---
+title: "Config"
+description: "Set the stream, pick the cohort activity, and filter the starting population of an activity dataset."
+---
+
+The config sets the starting population of the dataset — which stream it sits on, which activity it starts from, and which rows of that activity to keep.
+
+## Stream and Activity
+
+The **Stream** and **Activity** pickers work in either direction:
+
+- Pick the **stream** first, and the activity list is prefiltered to only the activities on that stream.
+- Pick the **activity** first, and the stream backpopulates automatically.
+
+Selecting an activity surfaces its description inline, so you can confirm you've got the right one without leaving the configurator.
+
+<Frame>
+  ![Screenshot 2026 07 27 At 16 35 55](/images/Screenshot-2026-07-27-at-16.35.55.png "Screenshot 2026 07 27 At 16 35 55")
+</Frame>
+
+## Cohort
+
+The cohort controls which occurrences of that activity become rows:
+
+<Columns cols={3}>
+  <Card title="All" icon="asterisk">
+    Every occurrence of the activity, for every customer.
+  </Card>
+
+  <Card title="First" icon="arrow-down-1-9">
+    Only the first occurrence per customer.
+  </Card>
+
+  <Card title="Last" icon="arrow-up-1-9">
+    Only the most recent occurrence per customer.
+  </Card>
+</Columns>
+
+For example, **First** of Email Received gives you one row per customer showing the first email they ever received. **All** of Email Received gives you every email, for everyone.
+
+<Frame>
+  <img
+    src="/images/Screenshot-2026-07-27-at-16.36.47.png"
+    alt="Screenshot 2026 07 27 At 16 36 47"
+    title="Screenshot 2026 07 27 At 16 36 47"
+    className="mx-auto"
+    style={{ width:"52%" }}
+  />
+</Frame>
+
+## Cohort Filters
+
+Cohort filters narrow the starting population before any joins are applied. Press **Rule** to add a single condition, or **Group** to nest a block of conditions.
+
+### Rules
+
+Each rule is a column, an operator, and a value.
+
+| Operator | Description |
+| --- | --- |
+| Equals | The column matches this value exactly. |
+| Not Equals | The column does not match this value. |
+| Contains | The column includes this text. |
+| Does Not Contain | The column does not include this text. |
+| Starts With | The column begins with this text. |
+| Does Not Start With | The column does not begin with this text. |
+| Ends With | The column ends with this text. |
+| Does Not End With | The column does not end with this text. |
+| Is In | The column matches any value in a list. |
+| Is Not In | The column matches none of the values in a list. |
+| Any Contains | The column contains any value from a list. |
+| None Contains | The column contains none of the values from a list. |
+| Is Null | The column has no value. |
+| Is Not Null | The column has a value. |
+| Is Empty | The column is an empty string. |
+| Is Not Empty | The column is not an empty string. |
+
+<Note>
+  Is In, Is Not In, Any Contains, and None Contains take an array of values rather than a single value.
+</Note>
+
+### Combining Rules
+
+Every **AND** joining two rules can be switched to **OR**, and **Group** adds a nested block of rules alongside the existing ones. Combining the two lets you build arbitrarily complex logic — for example, one group matching on revenue and another matching on campaign, joined with OR.
+
+<Frame>
+  ![Screenshot 2026 07 27 At 16 38 17 1](/images/Screenshot-2026-07-27-at-16.38.17-1.png "Screenshot 2026 07 27 At 16 38 17 1")
+</Frame>
+
+<Tip>
+  Filtering the cohort is not the same as filtering a joined activity. To filter an activity you're appending onto the cohort, use **Activity Filters** on the [Conditions](/activity-dataset-conditions) page instead.
+</Tip>

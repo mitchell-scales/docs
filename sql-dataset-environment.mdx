@@ -1,0 +1,32 @@
+---
+title: "Environment"
+description: "Browse and search the tables and columns available to query against."
+---
+
+The Schema browser on the left of the [Editor](/sql-dataset-editor) shows what data is available to query against — separate from the mechanics of writing the query itself.
+
+## Browsing Schemas
+
+<Columns cols={2}>
+  <Card title="Search" icon="magnifying-glass">
+    Search across tables and columns by name.
+  </Card>
+
+  <Card title="Refresh" icon="arrows-rotate">
+    Refresh the schema list to pick up newly added tables.
+  </Card>
+</Columns>
+
+The **Schemas** dropdown controls which schemas are in scope — select or deselect individual schemas, or clear all and pick specific ones. Each schema shows how many tables it contains.
+
+<Frame>
+  ![Screenshot placeholder — schema browser with schema list](/images/TODO-environment-schema-browser.png)
+</Frame>
+
+## Exploring a Table
+
+Each table shows its column count before you expand it. Expanding a table lists every column alongside its data type.
+
+<Frame>
+  ![Screenshot placeholder — expanded table showing columns and types](/images/TODO-environment-table-columns.png)
+</Frame>
